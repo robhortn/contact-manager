@@ -43,7 +43,7 @@ if not exists (select * from sysobjects where name='Company' and xtype='U')
 		[Address2] [varchar](100) NULL,
 		[City] [varchar](50) NULL,
 		[StateId] [int] NOT NULL,
-		[Zipcode] [varchar](5) NULL,
+		[PostalCode] [varchar](5) NULL,
 		[PhoneNumber] [varchar](10) NULL,
 		[FaxNumber] [varchar](10) NULL,
 		[CategoryId] [int] NULL,
