@@ -15,5 +15,10 @@ namespace ContactManager.api
         {
             return Ok("imaCompanyUraUser");
         }
+
+
+        // GetCompanyById
+        // DeleteCompany
+
     }
 }
