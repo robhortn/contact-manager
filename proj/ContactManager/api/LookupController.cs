@@ -22,5 +22,13 @@ namespace ContactManager.api
         {
             return Ok(_repo.GetStateProvinces.OrderBy(x => x.StateCode).ToList());
         }
+
+        [HttpGet]
+        [Route("api/lookup/getCategories")]
+        public IHttpActionResult GetCategories()
+        {
+            return Ok(_repo.GetCategories.OrderBy(x => x.Category).ToList());
+        }
+
     }
 }
