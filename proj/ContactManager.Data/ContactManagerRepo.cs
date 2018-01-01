@@ -4,7 +4,7 @@ using ContactManager.Data.Interfaces;
 
 namespace ContactManager.Data
 {
-    public class RepoLookup : RepoBase, IRepoLookups
+    public class RepoLookups : RepoBase, IRepoLookups
     {
         public IQueryable<Lookups.StateProvinces> GetStateProvinces
         {
@@ -19,6 +19,25 @@ namespace ContactManager.Data
             }
         }
 
-        public IQueryable<Lookups.Categories> GetCategories => throw new System.NotImplementedException();
+        public IQueryable<Lookups.Categories> GetCategories {
+            get
+            {
+                return Context.CompanyCategories.Select(x => new Lookups.Categories
+                {
+                    Id = x.Id,
+                    Category = x.Category
+                });
+            }
+        }
+    }
+
+    public class RepoCompanies : RepoBase, IRepoCompanies {
+
+        public IQueryable<Company> GetCompanies => throw new System.NotImplementedException();
+
+    }
+
+    public class RepoContacts : RepoBase, IRepoContacts
+    {
     }
 }

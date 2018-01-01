@@ -19,6 +19,7 @@
           <Property Name="PhoneNumber" Type="varchar" MaxLength="10" />
           <Property Name="FaxNumber" Type="varchar" MaxLength="10" />
           <Property Name="CategoryId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CompanyCategory">
           <Key>
@@ -126,6 +127,7 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
           <Property Name="CategoryId" Type="Int32" />
           <NavigationProperty Name="CompanyCategory" Relationship="Self.FK_Company_CompanyCategory" FromRole="Company" ToRole="CompanyCategory" />
           <NavigationProperty Name="Contacts" Relationship="Self.FK_Contact_Company" FromRole="Company" ToRole="Contact" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="CompanyCategory">
           <Key>
@@ -211,6 +213,7 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
           <EntitySetMapping Name="Companies">
             <EntityTypeMapping TypeName="ContactManagerRepo.Company">
               <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="Address1" ColumnName="Address1" />

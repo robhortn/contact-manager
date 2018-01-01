@@ -30,6 +30,7 @@ namespace ContactManager.Data.EF
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
         public Nullable<int> CategoryId { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual CompanyCategory CompanyCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

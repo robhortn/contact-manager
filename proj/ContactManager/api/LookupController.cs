@@ -13,7 +13,7 @@ namespace ContactManager.api
 
         public LookupController()
         {
-            _repo = new RepoLookup();
+            _repo = new RepoLookups();
         }
 
         [HttpGet]
