@@ -1,15 +1,25 @@
 ﻿using System.Web.Http;
 
+using System.Linq;
+using ContactManager.Data;
+using ContactManager.Data.Interfaces;
+
 namespace ContactManager.api
 {
     public class ContactController : BaseController
     {
+        private readonly IRepoContacts _repo;
+
+        public ContactController()
+        {
+            _repo = new RepoContacts();
+        }
+
         [HttpGet]
         [Route("api/contacts")]
         public IHttpActionResult GetContacts()
         {
-            // Gets all active companies 
-            return Ok("imaCompanyUraUser");
+            return Ok(_repo.GetContacts.OrderBy(x => x.NameLast).ToList());
         }
 
         [HttpGet]

@@ -47,5 +47,21 @@ namespace ContactManager.Data
 
     public class RepoContacts : RepoBase, IRepoContacts
     {
+        public IQueryable<Contact> GetContacts {
+            get
+            {
+                return Context.Contacts.Select(x => new Contact
+                {
+                    Id = x.Id,
+                    CompanyId = x.CompanyId,
+                    EmailAddress = x.EmailAddress,
+                    NameFirst = x.NameFirst,
+                    NameLast = x.NameLast,
+                    PhoneDirectLine = x.PhoneDirectLine,
+                    PhoneExtension = x.PhoneExtension,
+                    PhoneHome = x.PhoneHome
+                });
+            }
+        }
     }
 }

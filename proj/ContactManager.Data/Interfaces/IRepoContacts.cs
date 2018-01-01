@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using ContactManager.Data.Models;
 
 namespace ContactManager.Data.Interfaces
 {
     public interface IRepoContacts
     {
+        IQueryable<Contact> GetContacts { get; }
     }
 }
