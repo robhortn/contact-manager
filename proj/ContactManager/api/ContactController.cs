@@ -1,32 +1,24 @@
 ﻿using System.Web.Http;
-
 using System.Linq;
-using ContactManager.Data;
-using ContactManager.Data.Interfaces;
 
 namespace ContactManager.api
 {
     public class ContactController : BaseController
     {
-        private readonly IRepoContacts _repo;
-
-        public ContactController()
-        {
-            _repo = new RepoContacts();
-        }
-
         [HttpGet]
         [Route("api/contacts")]
         public IHttpActionResult GetContacts()
         {
-            return Ok(_repo.GetContacts.OrderBy(x => x.NameLast).ToList());
+            return Ok(_repoContacts.GetContacts.OrderBy(x => x.NameLast).ToList());
         }
 
         [HttpGet]
         [Route("api/contact/{id}")]
         public IHttpActionResult GetContact(int id)
         {
-            return Ok("contact: " + id);
+            if (id == 0) return NotFound();
+            var contact = _repoContacts.GetContacts.FirstOrDefault(x => x.Id == id);
+            return Ok(contact);
         }
 
         [HttpDelete]
