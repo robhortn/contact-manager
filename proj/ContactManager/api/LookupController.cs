@@ -3,7 +3,6 @@ using System.Web.Http;
 
 using ContactManager.Data;
 using ContactManager.Data.Interfaces;
-using ContactManager.Data.Models;
 
 namespace ContactManager.api
 {
@@ -28,6 +27,13 @@ namespace ContactManager.api
         public IHttpActionResult GetCategories()
         {
             return Ok(_repo.GetCategories.OrderBy(x => x.Category).ToList());
+        }
+
+        [HttpPost]
+        [Route("api/lookup/addCategory")]
+        public IHttpActionResult AddCategory()
+        {
+            return NotFound();
         }
 
     }

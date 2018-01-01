@@ -33,8 +33,16 @@ namespace ContactManager.Data
 
     public class RepoCompanies : RepoBase, IRepoCompanies {
 
-        public IQueryable<Company> GetCompanies => throw new System.NotImplementedException();
-
+        public IQueryable<Company> GetCompanies {
+            get
+            {
+                return Context.Companies.Where(a => a.IsActive).Select(x => new Company
+                {
+                    Id = x.Id,
+                    CompanyName = x.CompanyName
+                });
+            }
+        }
     }
 
     public class RepoContacts : RepoBase, IRepoContacts

@@ -1,21 +1,26 @@
-﻿using System.Web.Http;
+﻿using System.Linq;
+using System.Web.Http;
+using ContactManager.Data;
+using ContactManager.Data.Interfaces;
 
 namespace ContactManager.api
 {
     public class CompanyController : BaseController
     {
 
-        // Add logical delete to all companies and contacts
-        // If you delete a company you'd have to contact support to have it 'undeleted'
-        //  Put in a fakey contact screen that does nothing really but provides a way to contact support.
+        private readonly IRepoCompanies _repo;
 
-
+        public CompanyController()
+        {
+            _repo = new RepoCompanies();
+        }
+        
         [HttpGet]
         [Route("api/companies")]
         public IHttpActionResult GetCompanies()
         {
             // Gets all active companies 
-            return Ok("imaCompanyUraUser");
+            return Ok(_repo.GetCompanies.OrderBy(x => x.CompanyName).ToList());
         }
 
         [HttpGet]

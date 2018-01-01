@@ -15,6 +15,6 @@ namespace ContactManager.Data.Models
         public string CompanyFax { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public int IsActive { get; set; }
+        public bool IsActive { get; set; }
     }
 }
