@@ -1,5 +1,4 @@
-﻿
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContactManager.api;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -7,16 +6,16 @@ using System.Web.Http.Results;
 namespace ContactManager.Tests.Controllers
 {
     [TestClass]
-    public class CompanyControllerTest
+    public class ContactTests
     {
         [TestMethod]
-        public void GetCompaniesTest()
+        public void GetContactsTest()
         {
             // Arrange
-            CompanyController controller = new CompanyController();
+            ContactController controller = new ContactController();
 
             // Act
-            IHttpActionResult result = controller.GetCompanies();
+            IHttpActionResult result = controller.GetContacts();
 
             // Assert
             Assert.IsNotNull(result);
