@@ -4,6 +4,8 @@ using ContactManager.api;
 using System.Web.Http;
 using System.Web.Http.Results;
 
+using ContactManager.Data.Models;
+
 namespace ContactManager.Tests.Controllers
 {
     [TestClass]
@@ -17,13 +19,10 @@ namespace ContactManager.Tests.Controllers
 
             // Act
             IHttpActionResult result = controller.GetCompanies();
-
+           
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<System.String>));
-            OkNegotiatedContentResult<string> conNegResult = (OkNegotiatedContentResult<string>)result;
-            Assert.IsTrue(string.Empty != conNegResult.Content);
-
+            //Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<Company>));
         }
     }
 }

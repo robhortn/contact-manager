@@ -19,10 +19,6 @@ namespace ContactManager.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<System.String>));
-            OkNegotiatedContentResult<string> conNegResult = (OkNegotiatedContentResult<string>)result;
-            Assert.IsTrue(string.Empty != conNegResult.Content);
-
         }
     }
 }
