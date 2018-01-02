@@ -30,6 +30,10 @@ namespace ContactManager.api
         [Route("api/company/{id}")]
         public IHttpActionResult DeleteCompany(int id) {
             return Ok(string.Format("company with id {0} was deleted", id));
-        }   
+        }
+
+        // [HttpPost]
+        // [Route("api/company/{company}")]
+        // public IHttpActionResult Company()
     }
 }

@@ -32,5 +32,10 @@ namespace ContactManager.api
         {
             return Ok(string.Format("contact with id {0} was deleted", id));
         }
+
+        // [HttpPost]
+        // [Route("api/contact/{contact}")]
+        // public IHttpActionResult Contact()
+
     }
 }
