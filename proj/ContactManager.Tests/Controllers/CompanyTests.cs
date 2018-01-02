@@ -15,7 +15,7 @@ namespace ContactManager.Tests.Controllers
             CompanyController controller = new CompanyController();
 
             // Act
-            IHttpActionResult result = controller.GetCompanies();
+            IHttpActionResult result = controller.Companies();
            
             // Assert
             Assert.IsNotNull(result);
