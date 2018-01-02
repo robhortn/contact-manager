@@ -11,13 +11,19 @@ namespace ContactManager.api
         public IHttpActionResult GetCompanies()
         {
             // Gets all active companies 
-            return Ok(_repoCompanies.GetCompanies.OrderBy(x => x.CompanyName).ToList());
+            var results = _repoCompanies.GetCompanies.OrderBy(x => x.CompanyName).ToList();
+            if (results == null) return BuildResponse("No companies found.", ResponseTypes.NotFound);
+            return Ok(results);
         }
 
         [HttpGet]
         [Route("api/company/{id}")]
         public IHttpActionResult GetCompany(int id) {
-            return Ok("company: " + id);
+            if (id == 0) return BuildResponse("Company ID must be greater than zero.", ResponseTypes.BadRequest);
+            var results = _repoCompanies.GetCompanies.Where(x => x.Id == id).FirstOrDefault();
+            if (results == null) return BuildResponse("No companies found with the specified ID.", ResponseTypes.NotFound);
+
+            return Ok(results);
         }
 
         [HttpDelete]

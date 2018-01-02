@@ -39,7 +39,18 @@ namespace ContactManager.Data
                 return Context.Companies.Where(a => a.IsActive).Select(x => new Company
                 {
                     Id = x.Id,
-                    CompanyName = x.CompanyName
+                    CompanyName = x.CompanyName,
+                    Address1 = x.Address1,
+                    Address2 = x.Address2,
+                    CategoryId = x.CategoryId, 
+                    CategoryName = "UNMAPPED FIELD",
+                    City = x.City,
+                    CompanyFax = x.FaxNumber,
+                    CompanyPhone = x.PhoneNumber,
+                    IsActive = x.IsActive,
+                    PostalCode = x.PostalCode,
+                    StateId = x.StateId,
+                    StateProvinceName = "UNMAPPED FIELD"
                 });
             }
         }

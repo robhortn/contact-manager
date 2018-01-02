@@ -20,7 +20,7 @@ namespace ContactManager.api
                 case ResponseTypes.BadRequest:
                     return BadRequest("ERROR: " + msg);
                 case ResponseTypes.NotFound:
-                    return Ok("NOT FOUND: " + msg);
+                    return Ok(msg);
                 default:
                     return BadRequest("ERROR: An unknown exception has occured.");
             }

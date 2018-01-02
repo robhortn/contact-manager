@@ -9,7 +9,10 @@ namespace ContactManager.api
         [Route("api/contacts")]
         public IHttpActionResult GetContacts()
         {
-            return Ok(_repoContacts.GetContacts.OrderBy(x => x.NameLast).ToList());
+            var results = _repoContacts.GetContacts.OrderBy(x => x.NameLast).ToList();
+            if (results == null) return BuildResponse("No contacts found.", ResponseTypes.NotFound);
+
+            return Ok(results);
         }
 
         [HttpGet]
@@ -17,10 +20,10 @@ namespace ContactManager.api
         public IHttpActionResult GetContact(int id)
         {
             if (id == 0) return BuildResponse("Contact ID must be greater than zero.", ResponseTypes.BadRequest);
-            var contact = _repoContacts.GetContacts.Where(x => x.Id == id).FirstOrDefault();
-            if (contact == null) return BuildResponse("Unable to find a contact with the specified ID.", ResponseTypes.NotFound);
+            var results = _repoContacts.GetContacts.Where(x => x.Id == id).FirstOrDefault();
+            if (results == null) return BuildResponse("No contacts found with the specified ID.", ResponseTypes.NotFound);
 
-            return Ok(contact);
+            return Ok(results);
         }
 
         [HttpDelete]

@@ -13,7 +13,7 @@ namespace ContactManager.Data.Models
         public string PostalCode { get; set; }
         public string CompanyPhone { get; set; }
         public string CompanyFax { get; set; }
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public string CategoryName { get; set; }
         public bool IsActive { get; set; }
     }
