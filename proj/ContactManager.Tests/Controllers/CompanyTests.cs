@@ -2,9 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContactManager.api;
 using System.Web.Http;
-using System.Web.Http.Results;
-
-using ContactManager.Data.Models;
 
 namespace ContactManager.Tests.Controllers
 {
