@@ -16,8 +16,10 @@ namespace ContactManager.api
         [Route("api/contact/{id}")]
         public IHttpActionResult GetContact(int id)
         {
-            if (id == 0) return NotFound();
-            var contact = _repoContacts.GetContacts.FirstOrDefault(x => x.Id == id);
+            if (id == 0) return BuildResponse("Contact ID must be greater than zero.", ResponseTypes.BadRequest);
+            var contact = _repoContacts.GetContacts.Where(x => x.Id == id).FirstOrDefault();
+            if (contact == null) return BuildResponse("Unable to find a contact with the specified ID.", ResponseTypes.NotFound);
+
             return Ok(contact);
         }
 
