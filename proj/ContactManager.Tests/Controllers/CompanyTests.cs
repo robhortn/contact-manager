@@ -8,12 +8,18 @@ namespace ContactManager.Tests.Controllers
     [TestClass]
     public class CompanyTests
     {
+        private CompanyController controller;
+
+        public CompanyTests()
+        {
+            controller = new CompanyController();
+        }
+
         [TestMethod]
-        public void GetCompaniesTest()
+        public void CompaniesTest()
         {
             // Arrange
-            CompanyController controller = new CompanyController();
-
+            
             // Act
             IHttpActionResult result = controller.Companies();
            
@@ -21,5 +27,28 @@ namespace ContactManager.Tests.Controllers
             Assert.IsNotNull(result);
             //Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<Company>));
         }
+
+        [TestMethod]
+        public void CompanyByIdTest()
+        {
+            // Arrange
+            var id = 1;
+
+            // Act
+            IHttpActionResult result = controller.CompanyById(id);
+
+            // Assert
+            Assert.IsNotNull(result);
+            //Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<Company>));
+        }
+
+
+        //CompanyByIdTest
+        //CompaniesByCategoryTest
+        //CompaniesByPhoneNumberTest
+        //CompanyAddTest
+        //CompanyUpdateTest
+        //CompanyDeleteTest
+
     }
 }
