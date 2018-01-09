@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ContactManager.Data.EF;
+using Company = ContactManager.Data.EF.Company;
 using ContactManager.Data.Models;
 
 namespace ContactManager.Data
@@ -18,7 +19,7 @@ namespace ContactManager.Data
         }
 
         public int AddCompany(Models.Company company) {
-            EF.Company objCompany = new EF.Company
+            Company objCompany = new Company
             {
                 CompanyName = company.CompanyName,
                 City = company.City,
