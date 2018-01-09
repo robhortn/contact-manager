@@ -15,6 +15,7 @@ namespace ContactManager.Tests.Controllers
         public CompanyTests()
         {
             controller = new CompanyController();
+            controller._isInTestMode = true;
         }
 
         [TestMethod]

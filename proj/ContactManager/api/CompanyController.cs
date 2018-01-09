@@ -8,7 +8,7 @@ using ContactManager.Data.Models;
 namespace ContactManager.api
 {
     public class CompanyController : BaseController
-    {        
+    {
         [HttpGet]
         [Route("api/companies")]
         public IHttpActionResult Companies()
@@ -60,6 +60,8 @@ namespace ContactManager.api
             try
             {
                 DataWriter db = new DataWriter();
+                db.SetForTestMode = this._isInTestMode;
+
                 int result = db.AddCompany(company);
                 return Ok(result);
             }

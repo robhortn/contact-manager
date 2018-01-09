@@ -6,6 +6,8 @@ namespace ContactManager.api
 {
     public abstract class BaseController : ApiController
     {
+        public bool _isInTestMode = false;
+
         public enum ResponseTypes {
             BadRequest,
             DatabaseSaveFailure,

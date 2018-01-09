@@ -12,6 +12,7 @@ namespace ContactManager.Data
     public class DataWriter
     {
         private ContactManagerEntities _db;
+        public bool SetForTestMode { get; set; }
 
         public DataWriter()
         {
@@ -34,6 +35,9 @@ namespace ContactManager.Data
             };
 
             _db.Companies.Add(objCompany);
+
+            if (SetForTestMode) return 1;
+
             _db.SaveChanges();
             return objCompany.Id;
         }
