@@ -9,6 +9,48 @@ using ContactManager.Data.Models;
 
 namespace ContactManager.Data
 {
+        //private readonly bool _inTestMode = false;
+
+        //public DataWriter()
+        //{
+        //    Console.WriteLine("_inTestMode for DataWriter() says: " + _inTestMode);
+        //}
+        //public DataWriter(bool runInTestMode)
+        //{
+        //    _inTestMode = runInTestMode;
+        //    Console.WriteLine("_inTestMode for DataWriter(bool runInTestMode) says: " + _inTestMode);
+        //}
+
+        //public int Save()
+        //{
+        //    Console.WriteLine("_inTestMode for Save() says: " + _inTestMode);
+
+        //    // Get the Type and MethodInfo.
+        //    //UnitTestHandler();
+
+        //    DataWriter db = new DataWriter();
+        //    Type classType = db.GetType();
+        //    Type returnType = Type.GetType("System.Reflection.FieldInfo");
+        //    MethodInfo mymethodinfo = returnType.GetMethod("GetValue");
+
+
+        //    Console.Write("\n" + returnType.FullName + "." + mymethodinfo.Name);
+
+        //    // Get and display the ReturnType.
+        //    Console.Write("\nReturnType = {0}", mymethodinfo.ReturnType);
+
+        //    Console.WriteLine("Type determined as {0}", classType);
+        //    Console.WriteLine("Return type determined as {0}", returnType);
+
+        //    //Console.WriteLine("returnType is {0}", returnType.fie);
+
+        //    Console.WriteLine("returnType is assignable as int: {0}", returnType.IsAssignableFrom(typeof(int)));
+
+        //    Console.WriteLine(this.GetType().GetMethods().First().ReturnType);
+
+
+        //    return 1;
+        //}
     public class DataWriter
     {
         private ContactManagerEntities _db;
