@@ -1,6 +1,9 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 
 using System.Linq;
+using ContactManager.Data;
+using ContactManager.Data.Models;
 
 namespace ContactManager.api
 {
@@ -48,9 +51,23 @@ namespace ContactManager.api
             return Ok(results);
         }
 
-        // [HttpPost]
-        // [Route("api/company/{company}")]
-        // public IHttpActionResult CompanyAdd()
+        [HttpPost]
+        [Route("api/company/{company}")]
+        public IHttpActionResult CompanyAdd([FromBody] Company company) {
+
+            if (company == null) return BuildResponse("Company data not provided for saving.", ResponseTypes.BadRequest);
+
+            try
+            {
+                DataWriter db = new DataWriter();
+                int result = db.AddCompany(company);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BuildResponse("Error while saving the company.", ResponseTypes.BadRequest, ex);
+            }
+        }
 
         // [HttpPut]
         // [Route("api/company/{company}")]

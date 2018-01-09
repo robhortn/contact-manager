@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using ContactManager.Data;
 
 namespace ContactManager.api
@@ -7,6 +8,7 @@ namespace ContactManager.api
     {
         public enum ResponseTypes {
             BadRequest,
+            DatabaseSaveFailure,
             NotFound
         }
 
@@ -14,11 +16,13 @@ namespace ContactManager.api
         protected RepoContacts _repoContacts = new RepoContacts();
         protected RepoLookups _repoLookups = new RepoLookups();
 
-        protected IHttpActionResult BuildResponse(string msg, ResponseTypes rtype) {
+        protected IHttpActionResult BuildResponse(string msg, ResponseTypes rtype, Exception exception = null) {
             switch (rtype)
             {
                 case ResponseTypes.BadRequest:
                     return BadRequest("ERROR: " + msg);
+                case ResponseTypes.DatabaseSaveFailure:
+                    return BadRequest("ERROR: " + msg + exception);
                 case ResponseTypes.NotFound:
                     return Ok(msg);
                 default:

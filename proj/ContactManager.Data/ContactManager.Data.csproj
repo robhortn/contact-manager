@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactManagerRepo.cs" />
+    <Compile Include="DataWriter.cs" />
     <Compile Include="EF\LookupState.cs">
       <DependentUpon>ContactManagerDB.tt</DependentUpon>
     </Compile>

@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContactManager.api;
 using System.Web.Http;
 
+using ContactManager.Data.Models;
+
 namespace ContactManager.Tests.Controllers
 {
     [TestClass]
@@ -70,8 +72,23 @@ namespace ContactManager.Tests.Controllers
             //Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<Company>));
         }
 
-        
-        //CompanyAddTest
+        [TestMethod]
+        public void CompanyAdd()
+        {
+            // Arrange
+            Company param = new Company {
+                CompanyName = "Test Company Delete Me",
+                City = "Test City"
+            };
+
+            // Act
+            IHttpActionResult result = controller.CompanyAdd(param);
+
+            // Assert
+            Assert.IsNotNull(result);
+            //Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<Company>));
+        }
+       
         //CompanyUpdateTest
         //CompanyDeleteTest
 
