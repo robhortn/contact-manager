@@ -11,11 +11,11 @@ namespace ContactManager.Tests.Controllers
     public class CompanyTests
     {
         private CompanyController controller;
+        private bool testmode = true;
 
         public CompanyTests()
         {
-            controller = new CompanyController();
-            controller._isInTestMode = true;
+            controller = new CompanyController(testmode);
         }
 
         [TestMethod]
@@ -79,15 +79,26 @@ namespace ContactManager.Tests.Controllers
             // Arrange
             Company param = new Company {
                 CompanyName = "Test Company Delete Me",
-                City = "Test City"
+                City = "Test City",
+                Address1 = "123 Anywhere Street",
+                IsActive = true,
+                PostalCode = "63383",
+                Address2 = string.Empty,
+                CompanyPhone = "3331115432",
+                CompanyFax = "3331115433",
+                StateId = 25,
+                CategoryId = 3
             };
 
+            Data.DataWriter db = new Data.DataWriter(testmode);
+
             // Act
-            IHttpActionResult result = controller.CompanyAdd(param);
+            var result = db.AddCompany(param);
 
             // Assert
             Assert.IsNotNull(result);
-            //Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<Company>));
+            Assert.IsTrue(result > 0);
+            Assert.IsInstanceOfType(result, typeof(int));
         }
        
         //CompanyUpdateTest

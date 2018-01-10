@@ -9,6 +9,16 @@ namespace ContactManager.api
 {
     public class CompanyController : BaseController
     {
+        public CompanyController()
+        {
+            
+        }
+
+        public CompanyController(bool setForTestMode)
+        {
+            _inTestMode = setForTestMode;
+        }
+
         [HttpGet]
         [Route("api/companies")]
         public IHttpActionResult Companies()
@@ -59,9 +69,7 @@ namespace ContactManager.api
 
             try
             {
-                DataWriter db = new DataWriter();
-                db.SetForTestMode = this._isInTestMode;
-
+                DataWriter db = new DataWriter(_inTestMode);
                 int result = db.AddCompany(company);
                 return Ok(result);
             }
