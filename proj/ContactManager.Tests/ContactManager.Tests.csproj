@@ -113,7 +113,7 @@
     <Compile Include="Controllers\CompanyTests.cs" />
     <Compile Include="Controllers\ContactTests.cs" />
     <Compile Include="Controllers\LookupTests.cs" />
-    <Compile Include="Controllers\RepoTests.cs" />
+    <Compile Include="DataLayer\RepoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
