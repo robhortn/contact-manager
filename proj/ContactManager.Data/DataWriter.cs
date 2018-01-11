@@ -40,10 +40,59 @@ namespace ContactManager.Data
 
             if (_inTestMode) return 1;  //Exit early if we are unit testing.
 
-            //if (_inTestMode) return this.GetType().GetMethods().First().ReturnType;
-
             _db.SaveChanges();
             return objCompany.Id;
+        }
+
+        public int UpdateCompany(Models.Company company)
+        {
+            if (company == null || company.Id == 0) return 0;
+
+            Company result = _db.Companies.Find(company.Id);
+
+            if (result != null)
+            {
+                result.IsActive = company.IsActive;
+                result.PhoneNumber = company.CompanyPhone;
+                result.PostalCode = company.PostalCode;
+                result.StateId = company.StateId;
+                result.FaxNumber = company.CompanyFax;
+                result.Address1 = company.Address1;
+                result.Address2 = company.Address2;
+                result.CategoryId = company.CategoryId;
+                result.City = company.City;
+                result.CompanyName = company.CompanyName;
+            }
+            else
+            {
+                return 0;
+            }
+        
+            if (_inTestMode) return company.Id;  //Exit early if we are unit testing.
+
+            _db.SaveChanges();
+            return company.Id;
+        }
+
+        public bool DeleteCompany(Models.Company company)
+        {
+            if (company == null || company.Id == 0) return false;
+
+            Company result = _db.Companies.Find(company.Id);
+
+            if (result != null)
+            {
+                result.IsActive = false;
+            }
+            else
+            {
+                return false;
+            }
+
+            if (_inTestMode) return true;  //Exit early if we are unit testing.
+
+            _db.SaveChanges();
+            return true;
         }
     }
 }

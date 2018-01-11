@@ -9,7 +9,7 @@ using FluentAssertions;
 namespace ContactManager.Tests.Controllers
 {
     [TestClass]
-    public class RepoTests
+    public class RepoTests : TestBase
     {
         [TestMethod]
         public void RepoLookupsGetStateProvincesTest()

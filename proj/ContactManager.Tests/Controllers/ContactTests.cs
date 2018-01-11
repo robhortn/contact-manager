@@ -6,7 +6,7 @@ using System.Web.Http.Results;
 namespace ContactManager.Tests.Controllers
 {
     [TestClass]
-    public class ContactTests
+    public class ContactTests : TestBase
     {
         [TestMethod]
         public void GetContactsTest()

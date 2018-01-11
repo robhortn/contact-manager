@@ -4,18 +4,21 @@ using ContactManager.api;
 using System.Web.Http;
 
 using ContactManager.Data.Models;
+using FluentAssertions;
+using ContactManager.Tests.Builders;
 
 namespace ContactManager.Tests.Controllers
 {
     [TestClass]
-    public class CompanyTests
+    public class CompanyTests : TestBase
     {
         private CompanyController controller;
-        private bool testmode = true;
+        private ObjectBuilders objBuilder;
 
         public CompanyTests()
         {
             controller = new CompanyController(testmode);
+            objBuilder = new ObjectBuilders();
         }
         
         [TestMethod]
@@ -28,7 +31,6 @@ namespace ContactManager.Tests.Controllers
            
             // Assert
             Assert.IsNotNull(result);
-            //Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<Company>));
         }
 
         [TestMethod]
@@ -74,35 +76,59 @@ namespace ContactManager.Tests.Controllers
         }
 
         [TestMethod]
-        public void CompanyAdd()
+        public void CompanyAddTest()
         {
             // Arrange
-            Company param = new Company {
-                CompanyName = "Test Company Delete Me",
-                City = "Test City",
-                Address1 = "123 Anywhere Street",
-                IsActive = true,
-                PostalCode = "63383",
-                Address2 = string.Empty,
-                CompanyPhone = "3331115432",
-                CompanyFax = "3331115433",
-                StateId = 25,
-                CategoryId = 3
-            };
-
+            Company param = objBuilder.GenerateCompanyData();
             Data.DataWriter db = new Data.DataWriter(testmode);
 
             // Act
             var result = db.AddCompany(param);
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.IsTrue(result > 0);
-            Assert.IsInstanceOfType(result, typeof(int));
+            result.Should().NotBe(null).And.BeGreaterThan(0).And.BeOfType(typeof(int));
         }
-       
-        //CompanyUpdateTest
-        //CompanyDeleteTest
 
+        [TestMethod]
+        public void CompanyUpdateTest()
+        {
+            // Arrange
+            Company param = objBuilder.GenerateCompanyData();
+            Data.DataWriter db = new Data.DataWriter(testmode);
+
+            // Act
+            var result = db.UpdateCompany(param);
+
+            // Assert
+            result.Should().Be(param.Id);
+        }
+
+        [TestMethod]
+        public void CompanyUpdateTest_Fail()
+        {
+            // Arrange
+            Company param = objBuilder.GenerateCompanyDate_BadUpdate();
+            Data.DataWriter db = new Data.DataWriter(testmode);
+
+            // Act
+            var result = db.UpdateCompany(param);
+
+            // Assert
+            result.Should().NotBe(param.Id);
+        }
+
+        [TestMethod]
+        public void CompanyDeleteTest()
+        {
+            // Arrange
+            Company param = objBuilder.GenerateCompanyData();
+            Data.DataWriter db = new Data.DataWriter(testmode);
+
+            // Act
+            var result = db.DeleteCompany(param);
+
+            // Assert
+            result.Should().Be(true, "it should return True when a record is removed");
+        }
     }
 }

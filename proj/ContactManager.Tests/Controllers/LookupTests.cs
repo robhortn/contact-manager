@@ -5,7 +5,7 @@ using System.Web.Http;
 namespace ContactManager.Tests.Controllers
 {
     [TestClass]
-    public class LookupTests
+    public class LookupTests : TestBase
     {
         [TestMethod]
         public void GetStateProvincesTest()
