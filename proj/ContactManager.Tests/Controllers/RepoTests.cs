@@ -18,6 +18,7 @@ namespace ContactManager.Tests.Controllers
             RepoLookups repo = new RepoLookups();
             var results = repo.GetStateProvinces.ToList();
             results.Should().NotBeNullOrEmpty();
+            results.Should().AllBeOfType<Lookups.StateProvinces>();
         }
 
         [TestMethod]
@@ -26,6 +27,7 @@ namespace ContactManager.Tests.Controllers
             RepoLookups repo = new RepoLookups();
             var results = repo.GetCategories.ToList();
             results.Should().NotBeNullOrEmpty();
+            results.Should().AllBeOfType<Lookups.Categories>();
         }
 
         [TestMethod]
@@ -34,6 +36,7 @@ namespace ContactManager.Tests.Controllers
             RepoCompanies repo = new RepoCompanies();
             var results = repo.GetCompanies.ToList();
             results.Should().NotBeNullOrEmpty();
+            results.Should().AllBeOfType<Company>();
         }
     }
 }
