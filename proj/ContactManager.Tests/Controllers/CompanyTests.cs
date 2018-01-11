@@ -17,7 +17,7 @@ namespace ContactManager.Tests.Controllers
         {
             controller = new CompanyController(testmode);
         }
-
+        
         [TestMethod]
         public void CompaniesTest()
         {
