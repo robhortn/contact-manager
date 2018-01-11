@@ -21,7 +21,10 @@ namespace ContactManager.Data
             _inTestMode = setForTestMode;
         }
 
-        public int AddCompany(Models.Company company) {
+        #region Companies
+
+        public int AddCompany(Models.Company company)
+        {
             Company objCompany = new Company
             {
                 CompanyName = company.CompanyName,
@@ -67,7 +70,7 @@ namespace ContactManager.Data
             {
                 return 0;
             }
-        
+
             if (_inTestMode) return company.Id;  //Exit early if we are unit testing.
 
             _db.SaveChanges();
@@ -94,5 +97,35 @@ namespace ContactManager.Data
             _db.SaveChanges();
             return true;
         }
+
+        #endregion
+
+        #region Contacts
+
+        public int AddContact(Models.Company company)
+        {
+            Company objCompany = new Company
+            {
+                CompanyName = company.CompanyName,
+                City = company.City,
+                CategoryId = company.CategoryId,
+                Address2 = company.Address2,
+                Address1 = company.Address1,
+                FaxNumber = company.CompanyFax,
+                IsActive = company.IsActive,
+                PhoneNumber = company.CompanyPhone,
+                PostalCode = company.PostalCode,
+                StateId = company.StateId
+            };
+
+            _db.Companies.Add(objCompany);
+
+            if (_inTestMode) return 1;  //Exit early if we are unit testing.
+
+            _db.SaveChanges();
+            return objCompany.Id;
+        }
+
+        #endregion
     }
 }

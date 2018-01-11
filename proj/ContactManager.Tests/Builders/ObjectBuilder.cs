@@ -2,7 +2,7 @@
 
 namespace ContactManager.Tests.Builders
 {
-    public class ObjectBuilders
+    public class ObjectBuilder
     {
         public Company GenerateCompanyData()
         {

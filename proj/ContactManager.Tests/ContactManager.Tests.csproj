@@ -110,11 +110,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\ObjectBuilders.cs" />
+    <Compile Include="Builders\ObjectBuilder.cs" />
     <Compile Include="Controllers\CompanyTests.cs" />
     <Compile Include="Controllers\ContactTests.cs" />
     <Compile Include="Controllers\LookupTests.cs" />
     <Compile Include="DataLayer\RepoTests.cs" />
+    <Compile Include="DataLayer\CompanyDataWriterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
