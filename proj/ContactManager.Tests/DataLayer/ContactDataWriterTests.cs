@@ -62,7 +62,7 @@ namespace ContactManager.Tests.DataLayer
             var result = db.UpdateContact(param);
 
             // Assert
-            result.Should().NotBe(param.Id);
+            result.Should().Be(0, "when an update fails this is what we need back");
         }
     }
 }
