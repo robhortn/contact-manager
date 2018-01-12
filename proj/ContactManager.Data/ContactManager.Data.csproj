@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="ContactManagerRepo.cs" />
     <Compile Include="DataWriter.cs" />
+    <Compile Include="EF\LookupCompanyCategory.cs">
+      <DependentUpon>ContactManagerDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\LookupState.cs">
       <DependentUpon>ContactManagerDB.tt</DependentUpon>
     </Compile>
@@ -62,9 +65,6 @@
     <Compile Include="Models\Lookups.cs" />
     <Compile Include="RepoBase.cs" />
     <Compile Include="EF\Company.cs">
-      <DependentUpon>ContactManagerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\CompanyCategory.cs">
       <DependentUpon>ContactManagerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Contact.cs">

@@ -21,25 +21,9 @@
           <Property Name="CategoryId" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="CompanyCategory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="NameFirst" />
-            <PropertyRef Name="NameLast" />
-            <PropertyRef Name="PhoneDirectLine" />
-            <PropertyRef Name="PhoneExtension" />
-            <PropertyRef Name="PhoneHome" />
-            <PropertyRef Name="EmailAddress" />
-            <PropertyRef Name="CompanyId" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameFirst" Type="varchar" MaxLength="50" Nullable="false" />
@@ -50,6 +34,13 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
           <Property Name="EmailAddress" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CompanyId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="LookupCompanyCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="LookupState">
           <Key>
             <PropertyRef Name="Id" />
@@ -58,15 +49,27 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
           <Property Name="StateCode" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="StateName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Company_CompanyCategory">
-          <End Role="CompanyCategory" Type="Self.CompanyCategory" Multiplicity="0..1" />
+        <Association Name="FK_Company_LookupCompanyCategory">
+          <End Role="LookupCompanyCategory" Type="Self.LookupCompanyCategory" Multiplicity="0..1" />
           <End Role="Company" Type="Self.Company" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CompanyCategory">
+            <Principal Role="LookupCompanyCategory">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Company">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_LookupState">
+          <End Role="LookupState" Type="Self.LookupState" Multiplicity="1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -84,22 +87,15 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
         </Association>
         <EntityContainer Name="ContactManagerRepoStoreContainer">
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CompanyCategory" EntityType="Self.CompanyCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookupCompanyCategory" EntityType="Self.LookupCompanyCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LookupState" EntityType="Self.LookupState" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Contact" EntityType="Self.Contact" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Contact].[Id] AS [Id], 
-    [Contact].[NameFirst] AS [NameFirst], 
-    [Contact].[NameLast] AS [NameLast], 
-    [Contact].[PhoneDirectLine] AS [PhoneDirectLine], 
-    [Contact].[PhoneExtension] AS [PhoneExtension], 
-    [Contact].[PhoneHome] AS [PhoneHome], 
-    [Contact].[EmailAddress] AS [EmailAddress], 
-    [Contact].[CompanyId] AS [CompanyId]
-    FROM [dbo].[Contact] AS [Contact]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_Company_CompanyCategory" Association="Self.FK_Company_CompanyCategory">
-            <End Role="CompanyCategory" EntitySet="CompanyCategory" />
+          <AssociationSet Name="FK_Company_LookupCompanyCategory" Association="Self.FK_Company_LookupCompanyCategory">
+            <End Role="LookupCompanyCategory" EntitySet="LookupCompanyCategory" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_LookupState" Association="Self.FK_Company_LookupState">
+            <End Role="LookupState" EntitySet="LookupState" />
             <End Role="Company" EntitySet="Company" />
           </AssociationSet>
           <AssociationSet Name="FK_Contact_Company" Association="Self.FK_Contact_Company">
@@ -111,12 +107,30 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ContactManagerRepo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ContactManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="ContactManagerRepo.Company" />
+          <EntitySet Name="Contacts" EntityType="ContactManagerRepo.Contact" />
+          <EntitySet Name="LookupCompanyCategories" EntityType="ContactManagerRepo.LookupCompanyCategory" />
+          <EntitySet Name="LookupStates" EntityType="ContactManagerRepo.LookupState" />
+          <AssociationSet Name="FK_Company_LookupCompanyCategory" Association="ContactManagerRepo.FK_Company_LookupCompanyCategory">
+            <End Role="LookupCompanyCategory" EntitySet="LookupCompanyCategories" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_LookupState" Association="ContactManagerRepo.FK_Company_LookupState">
+            <End Role="LookupState" EntitySet="LookupStates" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Company" Association="ContactManagerRepo.FK_Contact_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -125,44 +139,47 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
           <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="FaxNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CategoryId" Type="Int32" />
-          <NavigationProperty Name="CompanyCategory" Relationship="Self.FK_Company_CompanyCategory" FromRole="Company" ToRole="CompanyCategory" />
-          <NavigationProperty Name="Contacts" Relationship="Self.FK_Contact_Company" FromRole="Company" ToRole="Contact" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CompanyCategory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Companies" Relationship="Self.FK_Company_CompanyCategory" FromRole="CompanyCategory" ToRole="Company" />
+          <NavigationProperty Name="LookupCompanyCategory" Relationship="ContactManagerRepo.FK_Company_LookupCompanyCategory" FromRole="Company" ToRole="LookupCompanyCategory" />
+          <NavigationProperty Name="LookupState" Relationship="ContactManagerRepo.FK_Company_LookupState" FromRole="Company" ToRole="LookupState" />
+          <NavigationProperty Name="Contacts" Relationship="ContactManagerRepo.FK_Contact_Company" FromRole="Company" ToRole="Contact" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="NameFirst" />
-            <PropertyRef Name="NameLast" />
-            <PropertyRef Name="PhoneDirectLine" />
-            <PropertyRef Name="PhoneExtension" />
-            <PropertyRef Name="PhoneHome" />
-            <PropertyRef Name="EmailAddress" />
-            <PropertyRef Name="CompanyId" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameFirst" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NameLast" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneDirectLine" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneExtension" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneHome" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NameFirst" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameLast" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneDirectLine" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneExtension" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneHome" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CompanyId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Company" Relationship="Self.FK_Contact_Company" FromRole="Contact" ToRole="Company" />
+          <NavigationProperty Name="Company" Relationship="ContactManagerRepo.FK_Contact_Company" FromRole="Contact" ToRole="Company" />
         </EntityType>
-        <Association Name="FK_Company_CompanyCategory">
-          <End Role="CompanyCategory" Type="Self.CompanyCategory" Multiplicity="0..1" />
-          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+        <EntityType Name="LookupCompanyCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Companies" Relationship="ContactManagerRepo.FK_Company_LookupCompanyCategory" FromRole="LookupCompanyCategory" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="LookupState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Companies" Relationship="ContactManagerRepo.FK_Company_LookupState" FromRole="LookupState" ToRole="Company" />
+        </EntityType>
+        <Association Name="FK_Company_LookupCompanyCategory">
+          <End Type="ContactManagerRepo.LookupCompanyCategory" Role="LookupCompanyCategory" Multiplicity="0..1" />
+          <End Type="ContactManagerRepo.Company" Role="Company" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CompanyCategory">
+            <Principal Role="LookupCompanyCategory">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Company">
@@ -170,9 +187,21 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Company_LookupState">
+          <End Type="ContactManagerRepo.LookupState" Role="LookupState" Multiplicity="1" />
+          <End Type="ContactManagerRepo.Company" Role="Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Contact_Company">
-          <End Role="Company" Type="Self.Company" Multiplicity="1" />
-          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <End Type="ContactManagerRepo.Company" Role="Company" Multiplicity="1" />
+          <End Type="ContactManagerRepo.Contact" Role="Contact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
               <PropertyRef Name="Id" />
@@ -182,28 +211,6 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ContactManagerEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Companies" EntityType="Self.Company" />
-          <EntitySet Name="CompanyCategories" EntityType="Self.CompanyCategory" />
-          <EntitySet Name="Contacts" EntityType="Self.Contact" />
-          <AssociationSet Name="FK_Company_CompanyCategory" Association="Self.FK_Company_CompanyCategory">
-            <End Role="CompanyCategory" EntitySet="CompanyCategories" />
-            <End Role="Company" EntitySet="Companies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contact_Company" Association="Self.FK_Contact_Company">
-            <End Role="Company" EntitySet="Companies" />
-            <End Role="Contact" EntitySet="Contacts" />
-          </AssociationSet>
-          <EntitySet Name="LookupStates" EntityType="ContactManagerRepo.LookupState" />
-        </EntityContainer>
-        <EntityType Name="LookupState">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StateCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="StateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -214,38 +221,38 @@ warning 6002: The table/view 'ContactManager.dbo.Contact' does not have a primar
             <EntityTypeMapping TypeName="ContactManagerRepo.Company">
               <MappingFragment StoreEntitySet="Company">
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompanyCategories">
-            <EntityTypeMapping TypeName="ContactManagerRepo.CompanyCategory">
-              <MappingFragment StoreEntitySet="CompanyCategory">
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="ContactManagerRepo.Contact">
               <MappingFragment StoreEntitySet="Contact">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="NameFirst" ColumnName="NameFirst" />
-                <ScalarProperty Name="NameLast" ColumnName="NameLast" />
-                <ScalarProperty Name="PhoneDirectLine" ColumnName="PhoneDirectLine" />
-                <ScalarProperty Name="PhoneExtension" ColumnName="PhoneExtension" />
-                <ScalarProperty Name="PhoneHome" ColumnName="PhoneHome" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PhoneHome" ColumnName="PhoneHome" />
+                <ScalarProperty Name="PhoneExtension" ColumnName="PhoneExtension" />
+                <ScalarProperty Name="PhoneDirectLine" ColumnName="PhoneDirectLine" />
+                <ScalarProperty Name="NameLast" ColumnName="NameLast" />
+                <ScalarProperty Name="NameFirst" ColumnName="NameFirst" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookupCompanyCategories">
+            <EntityTypeMapping TypeName="ContactManagerRepo.LookupCompanyCategory">
+              <MappingFragment StoreEntitySet="LookupCompanyCategory">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

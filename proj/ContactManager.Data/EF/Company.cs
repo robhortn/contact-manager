@@ -32,7 +32,8 @@ namespace ContactManager.Data.EF
         public Nullable<int> CategoryId { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual CompanyCategory CompanyCategory { get; set; }
+        public virtual LookupCompanyCategory LookupCompanyCategory { get; set; }
+        public virtual LookupState LookupState { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contact> Contacts { get; set; }
     }

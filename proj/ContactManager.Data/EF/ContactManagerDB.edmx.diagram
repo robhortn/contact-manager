@@ -5,12 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0f87e8cb312c425e9897a49c008bf876" Name="Diagram1">
-        <EntityTypeShape EntityType="ContactManagerRepo.Company" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ContactManagerRepo.CompanyCategory" Width="2" PointX="0.5" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="ContactManagerRepo.Contact" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="ContactManagerRepo.FK_Company_CompanyCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="ContactManagerRepo.FK_Contact_Company" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ContactManagerRepo.LookupState" Width="1.5" PointX="11.75" PointY="0.875" />
+        <EntityTypeShape EntityType="ContactManagerRepo.Company" Width="1.5" PointX="3" PointY="0.5" />
+        <EntityTypeShape EntityType="ContactManagerRepo.Contact" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="ContactManagerRepo.LookupCompanyCategory" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="ContactManagerRepo.LookupState" Width="1.5" PointX="0.75" PointY="4.125" />
+        <AssociationConnector Association="ContactManagerRepo.FK_Company_LookupCompanyCategory" />
+        <AssociationConnector Association="ContactManagerRepo.FK_Company_LookupState" />
+        <AssociationConnector Association="ContactManagerRepo.FK_Contact_Company" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

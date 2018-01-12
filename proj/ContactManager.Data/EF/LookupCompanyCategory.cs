@@ -12,10 +12,10 @@ namespace ContactManager.Data.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class CompanyCategory
+    public partial class LookupCompanyCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CompanyCategory()
+        public LookupCompanyCategory()
         {
             this.Companies = new HashSet<Company>();
         }

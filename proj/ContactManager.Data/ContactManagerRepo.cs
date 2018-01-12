@@ -22,7 +22,7 @@ namespace ContactManager.Data
         public IQueryable<Lookups.Categories> GetCategories {
             get
             {
-                return Context.CompanyCategories.Select(x => new Lookups.Categories
+                return Context.LookupCompanyCategories.Select(x => new Lookups.Categories
                 {
                     Id = x.Id,
                     Category = x.Category

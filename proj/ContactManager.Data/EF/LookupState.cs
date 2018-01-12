@@ -14,8 +14,17 @@ namespace ContactManager.Data.EF
     
     public partial class LookupState
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LookupState()
+        {
+            this.Companies = new HashSet<Company>();
+        }
+    
         public int Id { get; set; }
         public string StateCode { get; set; }
         public string StateName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Company> Companies { get; set; }
     }
 }

@@ -26,8 +26,8 @@ namespace ContactManager.Data.EF
         }
     
         public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<CompanyCategory> CompanyCategories { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<LookupCompanyCategory> LookupCompanyCategories { get; set; }
         public virtual DbSet<LookupState> LookupStates { get; set; }
     }
 }
