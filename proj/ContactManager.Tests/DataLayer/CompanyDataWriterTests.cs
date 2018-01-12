@@ -13,7 +13,7 @@ namespace ContactManager.Tests.DataLayer
         {
             // Arrange
             Company param = GenerateCompanyData();
-            Data.DataWriter db = new Data.DataWriter(testmode);
+            Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
             var result = db.AddCompany(param);
@@ -27,7 +27,7 @@ namespace ContactManager.Tests.DataLayer
         {
             // Arrange
             Company param = GenerateCompanyData();
-            Data.DataWriter db = new Data.DataWriter(testmode);
+            Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
             var result = db.UpdateCompany(param);
@@ -41,7 +41,7 @@ namespace ContactManager.Tests.DataLayer
         {
             // Arrange
             Company param = GenerateCompanyData_BadUpdate();
-            Data.DataWriter db = new Data.DataWriter(testmode);
+            Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
             var result = db.UpdateCompany(param);
@@ -55,7 +55,7 @@ namespace ContactManager.Tests.DataLayer
         {
             // Arrange
             Company param = GenerateCompanyData();
-            Data.DataWriter db = new Data.DataWriter(testmode);
+            Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
             var result = db.DeleteCompany(param);

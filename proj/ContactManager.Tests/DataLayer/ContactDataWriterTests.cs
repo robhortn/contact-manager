@@ -14,7 +14,7 @@ namespace ContactManager.Tests.DataLayer
         {
             // Arrange
             Contact param = GenerateContactData();
-            Data.DataWriter db = new Data.DataWriter(testmode);
+            Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
             var result = db.AddContact(param);
@@ -28,7 +28,7 @@ namespace ContactManager.Tests.DataLayer
         {
             // Arrange
             Contact param = GenerateContactData_BadInsert_MissingData();
-            Data.DataWriter db = new Data.DataWriter(testmode);
+            Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
             var result = db.AddContact(param);
@@ -42,7 +42,7 @@ namespace ContactManager.Tests.DataLayer
         {
             // Arrange
             Contact param = GenerateContactData();
-            Data.DataWriter db = new Data.DataWriter(testmode);
+            Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
             var result = db.UpdateContact(param);
@@ -56,7 +56,7 @@ namespace ContactManager.Tests.DataLayer
         {
             // Arrange
             Contact param = null;
-            Data.DataWriter db = new Data.DataWriter(testmode);
+            Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
             var result = db.UpdateContact(param);

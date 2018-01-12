@@ -12,7 +12,7 @@ namespace ContactManager.Tests.Controllers
 
         public CompanyTests()
         {
-            controller = new CompanyController(testmode);
+            controller = new CompanyController(runInTestMode);
         }
         
         [TestMethod]

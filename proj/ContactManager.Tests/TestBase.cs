@@ -6,7 +6,7 @@ namespace ContactManager.Tests
 {
     public class TestBase
     {
-        protected readonly bool testmode = true;
+        protected readonly bool runInTestMode = true;
         protected readonly ObjectBuilder _objBuilder;
 
         public TestBase()
