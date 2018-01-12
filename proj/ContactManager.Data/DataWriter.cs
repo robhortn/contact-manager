@@ -153,6 +153,22 @@ namespace ContactManager.Data
             return objIn.Id;
         }
 
+        public bool DeleteContact(Models.Contact objIn)
+        {
+            if (objIn == null || objIn.Id == 0) return false;
+
+            Contact result = _db.Contacts.Find(objIn.Id);
+
+            if (result == null) return false;
+
+            _db.Contacts.Remove(result);
+            
+            if (_inTestMode) return true;  //Exit early if we are unit testing.
+
+            _db.SaveChanges();
+            return true;
+        }
+
         #endregion
 
         #region Validation 

@@ -64,5 +64,19 @@ namespace ContactManager.Tests.DataLayer
             // Assert
             result.Should().Be(0, "when an update fails this is what we need back");
         }
+
+        [TestMethod]
+        public void ContactDeleteTest()
+        {
+            // Arrange
+            Contact param = GenerateContactData();
+            Data.DataWriter db = new Data.DataWriter(runInTestMode);
+
+            // Act
+            var result = db.DeleteContact(param);
+
+            // Assert
+            result.Should().Be(true, "it should return True when a record is removed");
+        }
     }
 }
