@@ -1,67 +1,68 @@
 ﻿using System;
-using ContactManager.Data.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using ContactManager.Data.Models;
 using FluentAssertions;
+
 namespace ContactManager.Tests.DataLayer
 {
     [TestClass]
-    public class CompanyDataWriterTests : TestBase
+    public class ContactDataWriterTests : TestBase
     {
         [TestMethod]
-        public void CompanyAddTest()
+        public void ContactAddTest()
         {
             // Arrange
-            Company param = GenerateCompanyData();
+            Contact param = GenerateContactData();
             Data.DataWriter db = new Data.DataWriter(testmode);
 
             // Act
-            var result = db.AddCompany(param);
+            var result = db.AddContact(param);
 
             // Assert
             result.Should().NotBe(null).And.BeGreaterThan(0).And.BeOfType(typeof(int));
         }
 
         [TestMethod]
-        public void CompanyUpdateTest()
+        public void ContactAddTest_BadInsert_MissingData()
         {
             // Arrange
-            Company param = GenerateCompanyData();
+            Contact param = GenerateContactData_BadInsert_MissingData();
             Data.DataWriter db = new Data.DataWriter(testmode);
 
             // Act
-            var result = db.UpdateCompany(param);
+            var result = db.AddContact(param);
+
+            // Assert
+            result.Should().Be(0, "we do not expect an ID greater than zero when the insert is bad");
+        }
+
+        [TestMethod]
+        public void ContactUpdateTest()
+        {
+            // Arrange
+            Contact param = GenerateContactData();
+            Data.DataWriter db = new Data.DataWriter(testmode);
+
+            // Act
+            var result = db.UpdateContact(param);
 
             // Assert
             result.Should().Be(param.Id);
         }
 
         [TestMethod]
-        public void CompanyUpdateTest_Fail()
+        public void ContactUpdateTest_BadUpdate()
         {
             // Arrange
-            Company param = GenerateCompanyData_BadUpdate();
+            Contact param = null;
             Data.DataWriter db = new Data.DataWriter(testmode);
 
             // Act
-            var result = db.UpdateCompany(param);
+            var result = db.UpdateContact(param);
 
             // Assert
             result.Should().NotBe(param.Id);
-        }
-
-        [TestMethod]
-        public void CompanyDeleteTest()
-        {
-            // Arrange
-            Company param = GenerateCompanyData();
-            Data.DataWriter db = new Data.DataWriter(testmode);
-
-            // Act
-            var result = db.DeleteCompany(param);
-
-            // Assert
-            result.Should().Be(true, "it should return True when a record is removed");
         }
     }
 }

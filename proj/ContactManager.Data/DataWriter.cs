@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using ContactManager.Data.EF;
 
 namespace ContactManager.Data
@@ -102,30 +103,77 @@ namespace ContactManager.Data
 
         #region Contacts
 
-        public int AddContact(Models.Company company)
+        public int AddContact(Models.Contact objIn)
         {
-            Company objCompany = new Company
+            if (objIn == null || IsAnyNullOrEmpty(objIn)) return 0;
+
+            Contact objNew = new Contact
             {
-                CompanyName = company.CompanyName,
-                City = company.City,
-                CategoryId = company.CategoryId,
-                Address2 = company.Address2,
-                Address1 = company.Address1,
-                FaxNumber = company.CompanyFax,
-                IsActive = company.IsActive,
-                PhoneNumber = company.CompanyPhone,
-                PostalCode = company.PostalCode,
-                StateId = company.StateId
+                NameFirst = objIn.NameFirst,
+                NameLast = objIn.NameLast,
+                CompanyId = objIn.CompanyId,
+                PhoneDirectLine = objIn.PhoneDirectLine,
+                PhoneExtension = objIn.PhoneExtension,
+                PhoneHome = objIn.PhoneHome,
+                EmailAddress = objIn.EmailAddress
             };
 
-            _db.Companies.Add(objCompany);
+            _db.Contacts.Add(objNew);
 
             if (_inTestMode) return 1;  //Exit early if we are unit testing.
 
             _db.SaveChanges();
-            return objCompany.Id;
+            return objNew.Id;
+        }
+
+        public int UpdateContact(Models.Contact objIn)
+        {
+            if (objIn == null || objIn.Id == 0 || IsAnyNullOrEmpty(objIn)) return 0;
+
+            Contact result = _db.Contacts.Find(objIn.Id);
+
+            if (result != null)
+            {
+                result.NameFirst = objIn.NameFirst;
+                result.NameLast = objIn.NameLast;
+                result.CompanyId = objIn.CompanyId;
+                result.PhoneDirectLine = objIn.PhoneDirectLine;
+                result.PhoneExtension = objIn.PhoneExtension;
+                result.PhoneHome = objIn.PhoneHome;
+                result.EmailAddress = objIn.EmailAddress;
+            }
+            else
+            {
+                return 0;
+            }
+
+            if (_inTestMode) return objIn.Id;  //Exit early if we are unit testing.
+
+            _db.SaveChanges();
+            return objIn.Id;
         }
 
         #endregion
+
+        #region Validation 
+
+        bool IsAnyNullOrEmpty(object myObject)
+        {
+            foreach (PropertyInfo pi in myObject.GetType().GetProperties())
+            {
+                if (pi.PropertyType == typeof(string))
+                {
+                    string value = (string)pi.GetValue(myObject);
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
     }
 }

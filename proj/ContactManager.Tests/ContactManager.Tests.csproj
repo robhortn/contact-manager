@@ -116,6 +116,7 @@
     <Compile Include="Controllers\LookupTests.cs" />
     <Compile Include="DataLayer\RepoTests.cs" />
     <Compile Include="DataLayer\CompanyDataWriterTests.cs" />
+    <Compile Include="DataLayer\ContactDataWriterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
