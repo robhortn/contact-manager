@@ -37,5 +37,14 @@ namespace ContactManager.Tests.Controllers
             results.Should().NotBeNullOrEmpty();
             results.Should().AllBeOfType<Company>();
         }
+
+        [TestMethod]
+        public void RepoGetContactsTest()
+        {
+            RepoContacts repo = new RepoContacts();
+            var results = repo.GetContacts.ToList();
+            results.Should().NotBeNullOrEmpty();
+            results.Should().AllBeOfType<Contact>();
+        }
     }
 }
