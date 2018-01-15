@@ -1,0 +1,30 @@
+﻿.navbar .navbar-brand {
+    background: url(/content/images/icon.png) no-repeat left center !important;
+    margin: 0 1em;
+}
+
+.widget.wdarkgray .widget-head {
+    background-color: #202A2F;
+    border: 1px solid #202A2F;
+    color: #fff;
+}
+
+    .widget.wred .widget-head .widget-icons a,
+    .widget.wblue .widget-head .widget-icons a,
+    .widget.wlightblue .widget-head .widget-icons a,
+    .widget.worange .widget-head .widget-icons a,
+    .widget.wgreen .widget-head .widget-icons a,
+    .widget.wviolet .widget-head .widget-icons a,
+    .widget.wdarkgray .widget-head .widget-icons a {
+        color: #fff;
+    }
+
+        .widget.wred .widget-head .widget-icons a:hover,
+        .widget.wblue .widget-head .widget-icons a:hover,
+        .widget.wlightblue .widget-head .widget-icons a:hover,
+        .widget.worange .widget-head .widget-icons a:hover,
+        .widget.wgreen .widget-head .widget-icons a:hover,
+        .widget.wviolet .widget-head .widget-icons a:hover,
+        .widget.wdarkgray .widget-head .widget-icons a {
+            color: #eee;
+        }

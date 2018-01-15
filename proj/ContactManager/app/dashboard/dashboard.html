@@ -23,54 +23,27 @@
                     </ul>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-6">
-                    <div class="widget wviolet">
-                        <div data-cc-widget-header title="People"
-                             allow-collapse="true"></div>
-                        <div class="widget-content text-center text-info">
-                            <table class="table table-condensed table-striped">
-                                <thead>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Age</th>
-                                    <th>Location</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr data-ng-repeat="p in vm.people">
-                                    <td>{{p.firstName}}</td>
-                                    <td>{{p.lastName}}</td>
-                                    <td>{{p.age}}</td>
-                                    <td>{{p.location}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="widget wgreen">
-                        <div data-cc-widget-header title="{{vm.news.title}}"
-                             allow-collapse="true"></div>
-                        <div class="widget-content text-center text-info">
-                            <small>{{vm.news.description}}</small>
-                        </div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
+                    <div class="widget wdarkgray">
+                        <div data-cc-widget-header title="Search/Add Company"></div>
+                        <div class="widget-content text-info">
+                            <div>filter</div>
+                            <hr />
+                            data-entry-form
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-md-6">
-                    <div class="widget wblue">
-                        <div data-cc-widget-header title="Companies" allow-collapse="true"></div>
-                        <div class="widget-content text-center text-info">
+                <div class="col-md-12">
+                    <div class="widget wdarkgray">
+                        <div data-cc-widget-header title="Company List" allow-collapse="true"></div>
+                        <div class="widget-content text-info">
+                            
+                            <div>&nbsp;</div>
                             <table class="table table-condensed table-striped">
                                 <thead>
                                     <tr>
