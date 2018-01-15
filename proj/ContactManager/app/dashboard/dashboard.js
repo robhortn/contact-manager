@@ -9,14 +9,26 @@
 
         var vm = this;
 
+        vm.filtered = false;
+
         vm.titles = {
             main: 'Dashboard',
-            mainsub: ''
+            mainsub: '',
+            companyList: 'Company List' + (vm.filtered == true ? ' (Filtered)' : ' (All)')
         };
 
+        vm.title = 'Dashboard';
         vm.companyCount = 0;
         vm.companies = [];
-        vm.title = 'Dashboard';
+
+
+        vm.categories = [
+            { id: 1, name: 'Super Amazing Awesome (local)' },
+            { id: 2, name: 'Very Cool (local)' },
+            { id: 3, name: 'Secret Lair (local)' }
+        ];
+
+        vm.category = '';
 
         activate();
 
@@ -41,7 +53,7 @@
         function getCompanies() {
             return apiService.getCompanies().then(function (data) {
                 return vm.companies = data;
-            }).then(function(data) {
+            }).then(function (data) {
                 vm.companyCount = vm.companies.length;
             });
         }

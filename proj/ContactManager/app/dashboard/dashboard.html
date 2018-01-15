@@ -7,17 +7,26 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <div class="widget wdarkgray">
                         <div data-cc-widget-header title="Search/Add Company"></div>
                         <div class="widget-content text-info">
-                            <div>filter</div>
+                            <div class="row">
+                                <div class="col-md-12">Search</div>
+                                <div class="col-md-6"><span class="small">Phone</span>&nbsp; <input type="text" class="form-control" name="message" placeholder="Phone number"></div>
+                                <div class="col-md-6">
+                                    <span class="small">Category</span>&nbsp;
+                                    <select id="selCategory" name="selectCategory" class="form-control" data-ng-model="vm.category" data-ng-options="a.name as a.name for a in vm.categories">
+                                        <option value="">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
                             <hr/>
                             data-entry-form
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <ul class="today-datas">
                         <li class="borange">
                             <div class="pull-left"><i class="fa fa-building"></i></div>
@@ -33,7 +42,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="widget wdarkgray">
-                        <div data-cc-widget-header title="Company List" allow-collapse="true"></div>
+                        <div data-cc-widget-header title={{vm.titles.companyList}} allow-collapse="true"></div>
                         <div class="widget-content text-info">
 
                             <div>&nbsp;</div>
