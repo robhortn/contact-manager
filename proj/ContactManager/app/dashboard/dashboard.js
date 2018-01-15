@@ -8,19 +8,20 @@
         var log = getLogFn(controllerId);
 
         var vm = this;
-        vm.news = {
-            title: 'FlexCorp Contact Management',
-            description: 'Versatile management of your companies and contacts'
+
+        vm.titles = {
+            main: 'Dashboard',
+            mainsub: ''
         };
-        vm.messageCount = 0;
-        vm.people = [];
+
+        vm.companyCount = 0;
         vm.companies = [];
         vm.title = 'Dashboard';
 
         activate();
 
         function activate() {
-            var promises = [getMessageCount(), getPeople(), getCompanies()];
+            var promises = [getCompanies(), getMessageCount(), getPeople()];
             common.activateController(promises, controllerId)
                 .then(function () { log('Activated Dashboard View'); });
         }
@@ -40,6 +41,8 @@
         function getCompanies() {
             return apiService.getCompanies().then(function (data) {
                 return vm.companies = data;
+            }).then(function(data) {
+                vm.companyCount = vm.companies.length;
             });
         }
     }

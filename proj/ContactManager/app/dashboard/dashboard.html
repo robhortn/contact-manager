@@ -1,27 +1,9 @@
 ﻿<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
     <section class="matter">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="today-datas">
-                        <li class="blightblue">
-                            <div class="pull-left"><i class="fa fa-plane"></i></div>
-                            <div class="datas-text pull-right">
-                                <span class="bold">May 18 - 19, 2015</span> Castle Resort, Neverland
-                            </div>
-                            <div class="clearfix"></div>
-                        </li>
-
-                        <li class="borange">
-                            <div class="pull-left"><i class="fa fa-envelope"></i></div>
-                            <div class="datas-text pull-right">
-                                <span class="bold">{{vm.messageCount}}</span> Messages
-                            </div>
-                            <div class="clearfix"></div>
-                        </li>
-
-                    </ul>
-                </div>
+            
+            <div id="page-title">
+                <h2 class="page-header text-overflow"><i class="fa fa-dashboard"></i> {{vm.titles.main}} <small>{{vm.titles.mainsub}}</small></h2>
             </div>
 
             <div class="row">
@@ -30,10 +12,21 @@
                         <div data-cc-widget-header title="Search/Add Company"></div>
                         <div class="widget-content text-info">
                             <div>filter</div>
-                            <hr />
+                            <hr/>
                             data-entry-form
                         </div>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <ul class="today-datas">
+                        <li class="borange">
+                            <div class="pull-left"><i class="fa fa-building"></i></div>
+                            <div class="datas-text pull-right">
+                                <span class="bold">{{vm.companyCount}}</span> Companies
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
@@ -42,26 +35,26 @@
                     <div class="widget wdarkgray">
                         <div data-cc-widget-header title="Company List" allow-collapse="true"></div>
                         <div class="widget-content text-info">
-                            
+
                             <div>&nbsp;</div>
                             <table class="table table-condensed table-striped">
                                 <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Address</th>
-                                        <th>City</th>
-                                        <th>Phone</th>
-                                    </tr>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>Phone</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr data-ng-repeat="c in vm.companies">
-                                        <td>{{c.Id}}</td>
-                                        <td>{{c.CompanyName}}</td>
-                                        <td>{{c.Address1}}</td>
-                                        <td>{{c.City}}</td>
-                                        <td>{{c.CompanyPhone}}</td>
-                                    </tr>
+                                <tr data-ng-repeat="c in vm.companies">
+                                    <td>{{c.Id}}</td>
+                                    <td>{{c.CompanyName}}</td>
+                                    <td>{{c.Address1}}</td>
+                                    <td>{{c.City}}</td>
+                                    <td>{{c.CompanyPhone}}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
