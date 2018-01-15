@@ -29,6 +29,9 @@
 
         vm.category = '';
 
+        // Functions
+        vm.selectCompany = selectCompany;
+
         activate();
 
         function activate() {
@@ -55,6 +58,10 @@
             }).then(function (data) {
                 vm.companyCount = vm.companies.length;
             });
+        }
+
+        function selectCompany(id) {
+            log('you selected id: ' + id);
         }
     }
 })();

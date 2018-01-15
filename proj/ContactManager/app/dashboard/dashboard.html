@@ -22,6 +22,9 @@
                                 </div>
                                 <div>&nbsp;</div>
                             </div>
+                            <div class="row">
+                                <div class="col-xs-3 col-xs-offset-9"><button type="button" class="btn btn-default">Search</button></div>
+                            </div>
                             <hr/>
                             data-entry-form
                         </div>
@@ -29,7 +32,7 @@
                 </div>
                 <div class="col-md-3">
                     <ul class="today-datas">
-                        <li class="bviolet">
+                        <li class="wlightgreen">
                             <div class="pull-left"><i class="fa fa-building"></i></div>
                             <div class="datas-text pull-right">
                                 <span class="bold">{{vm.companyCount}}</span> Companies
@@ -46,7 +49,7 @@
                         <div data-cc-widget-header title={{vm.titles.companyList}}></div>
 
                         <div ng-repeat="c in vm.companies track by c.Id">
-                            <company info="c"></company>
+                            <company info="c" ng-click="vm.selectCompany(c.Id)"></company>
                         </div>
                     </div>
                 </div>
