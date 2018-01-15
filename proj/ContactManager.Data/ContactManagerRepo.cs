@@ -51,7 +51,7 @@ namespace ContactManager.Data
                     PostalCode = x.PostalCode,
                     StateId = x.StateId,
                     StateProvinceName = "UNMAPPED FIELD"
-                });
+                }).OrderBy(o => o.CompanyName);
             }
         }
     }
