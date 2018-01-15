@@ -5,15 +5,27 @@
 
     <section class="matter">
         <div class="container">
+            
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="widget wblue">
-                        <div data-cc-widget-header title="Search/Add Company"></div>
+                        <div data-cc-widget-header title="Add Company" allow-collapse="true"></div>
+                        <div class="widget-content text-info">
+                            add
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget wblue">
+                        <div data-cc-widget-header title="Search" allow-collapse="true"></div>
                         <div class="widget-content text-info">
                             <div class="row">
                                 <div class="col-xs-12">Search</div>
                                 <div>&nbsp;</div>
-                                <div class="col-xs-6"><span class="small">Phone</span>&nbsp; <input type="text" class="form-control" name="message" placeholder="Phone number"></div>
+                                <div class="col-xs-6"><span class="small">Phone</span>&nbsp; <input type="text" class="form-control" name="message" placeholder="Phone number" valid-number maxlength="10"></div>
                                 <div class="col-xs-6">
                                     <span class="small">Category</span>&nbsp;
                                     <select id="selCategory" name="selectCategory" class="form-control" data-ng-model="vm.category" data-ng-options="a.name as a.name for a in vm.categories">
@@ -25,21 +37,8 @@
                             <div class="row">
                                 <div class="col-xs-3 col-xs-offset-9"><button type="button" class="btn btn-default">Search</button></div>
                             </div>
-                            <hr/>
-                            data-entry-form
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <ul class="today-datas">
-                        <li class="wlightgreen">
-                            <div class="pull-left"><i class="fa fa-building"></i></div>
-                            <div class="datas-text pull-right">
-                                <span class="bold">{{vm.companyCount}}</span> Companies
-                            </div>
-                            <div class="clearfix"></div>
-                        </li>
-                    </ul>
                 </div>
             </div>
 
@@ -54,6 +53,18 @@
                     </div>
                 </div>
             </div>
+
+            <!--<div class="col-md-3 col-md-offset-9">
+                <ul class="today-datas">
+                    <li class="wlightgreen">
+                        <div class="pull-left"><i class="fa fa-building"></i></div>
+                        <div class="datas-text pull-right">
+                            <span class="bold">{{vm.companyCount}}</span> Companies
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>-->
 
             <!--<div class="row">
             <div class="col-md-12">
