@@ -22,7 +22,6 @@
         }
     }]);
 
-
     app.directive('ccSidebar', function () {
         // Opens and clsoes the sidebar menu.
         // Usage:
@@ -199,4 +198,25 @@
             attrs.$set('class', 'widget-head');
         }
     });
+
+    app.directive('company', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                c: '=info'
+            },
+            templateUrl: '/app/layout/company.html'
+        };
+    });
+
+    app.directive('contact', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                c: '=info'
+            },
+            templateUrl: '/app/layout/contact.html'
+        };
+    });
+
 })();

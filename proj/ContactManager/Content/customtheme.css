@@ -67,7 +67,7 @@ body {
     font-size: 13px;
     line-height: 23px;
     color: #666;
-    background: #111;
+    background: #F1F1F1; /*#111;*/
     padding-top: 45px;
     -webkit-font-smoothing: antialiased;
 }
