@@ -9,8 +9,8 @@
 
         var vm = this;
         vm.news = {
-            title: 'FlexCorp',
-            description: 'Versatil company contact management'
+            title: 'FlexCorp Contact Management',
+            description: 'Versatile management of your companies and contacts'
         };
         vm.messageCount = 0;
         vm.people = [];
