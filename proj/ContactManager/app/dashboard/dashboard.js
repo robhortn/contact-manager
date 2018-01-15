@@ -61,7 +61,13 @@
         }
 
         function selectCompany(id) {
-            log('you selected id: ' + id);
+            
+            var result = vm.companies.find(x => x.Id === id);
+            if (result !== undefined) {
+                console.log(result);
+            } else {
+                console.log('selectCompany() in dashboard.js cannot find id: ' + id);
+            }
         }
     }
 })();
