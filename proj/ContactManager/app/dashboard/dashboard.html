@@ -8,20 +8,20 @@
 
             <div class="row">
                 <div class="col-md-9">
-                    <div class="widget wdarkgray">
+                    <div class="widget worange">
                         <div data-cc-widget-header title="Search/Add Company"></div>
                         <div class="widget-content text-info">
                             <div class="row">
                                 <div class="col-xs-12">Search</div>
-                                <div class="col-xs-12">
-                                    <div class="col-xs-6"><span class="small">Phone</span>&nbsp; <input type="text" class="form-control" name="message" placeholder="Phone number"></div>
-                                    <div class="col-xs-6">
-                                        <span class="small">Category</span>&nbsp;
-                                        <select id="selCategory" name="selectCategory" class="form-control" data-ng-model="vm.category" data-ng-options="a.name as a.name for a in vm.categories">
-                                            <option value="">-- Select --</option>
-                                        </select>
-                                    </div>
+                                <div>&nbsp;</div>
+                                <div class="col-xs-6"><span class="small">Phone</span>&nbsp; <input type="text" class="form-control" name="message" placeholder="Phone number"></div>
+                                <div class="col-xs-6">
+                                    <span class="small">Category</span>&nbsp;
+                                    <select id="selCategory" name="selectCategory" class="form-control" data-ng-model="vm.category" data-ng-options="a.name as a.name for a in vm.categories">
+                                        <option value="">-- Select --</option>
+                                    </select>
                                 </div>
+                                <div>&nbsp;</div>
                             </div>
                             <hr />
                             data-entry-form
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-3">
                     <ul class="today-datas">
-                        <li class="borange">
+                        <li class="bviolet">
                             <div class="pull-left"><i class="fa fa-building"></i></div>
                             <div class="datas-text pull-right">
                                 <span class="bold">{{vm.companyCount}}</span> Companies
@@ -43,9 +43,9 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="widget wdarkgray">
+                    <div class="widget worange">
                         <div data-cc-widget-header title={{vm.titles.companyList}}></div>
-                        
+
                         <div ng-repeat="c in vm.companies track by c.Id">
                             <company info="c"></company>
                         </div>

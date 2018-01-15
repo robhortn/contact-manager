@@ -48,7 +48,7 @@
                     templateUrl: 'app/about/about.html',
                     settings: {
                         nav: 2,
-                        content: '<i class="fa fa-gears"></i> About'
+                        content: ' About'
                     }
                 }
             }
