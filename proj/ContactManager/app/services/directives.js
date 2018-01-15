@@ -219,4 +219,32 @@
         };
     });
 
+    app.directive('reformatPhoneNumber', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, element, attrs, modelCtrl) {
+
+                modelCtrl.$parsers.push(function (number) {
+                    var transformedNumber = number;
+
+                    if (number.match(/^\d{4}$/)) {
+                        transformedNumber = number.slice(0, 3) + " " + number.slice(3);
+                    }
+                    if (number.match(/^[\d\s]{8}$/)) {
+                        transformedNumber = number.slice(0, 7) + " " + number.slice(7);
+                    }
+
+                    if (number.length > 12) {
+                        transformedNumber = number.slice(0, 12);
+                    }
+                    if (transformedNumber !== number) {
+                        modelCtrl.$setViewValue(transformedNumber);
+                        modelCtrl.$render();
+                    }
+                    return transformedNumber;
+                });
+            }
+        };
+    });
+
 })();
