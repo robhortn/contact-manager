@@ -1,14 +1,13 @@
-﻿<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
+﻿
+<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
+    
+    <pageheader info="vm.titles"></pageheader>
+
     <section class="matter">
         <div class="container">
-
-            <div id="page-title">
-                <h2 class="page-header text-overflow"><i class="fa fa-dashboard"></i> {{vm.titles.main}} <small>{{vm.titles.mainsub}}</small></h2>
-            </div>
-
             <div class="row">
                 <div class="col-md-9">
-                    <div class="widget worange">
+                    <div class="widget wblue">
                         <div data-cc-widget-header title="Search/Add Company"></div>
                         <div class="widget-content text-info">
                             <div class="row">
@@ -23,7 +22,7 @@
                                 </div>
                                 <div>&nbsp;</div>
                             </div>
-                            <hr />
+                            <hr/>
                             data-entry-form
                         </div>
                     </div>
@@ -43,7 +42,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="widget worange">
+                    <div class="widget wblue">
                         <div data-cc-widget-header title={{vm.titles.companyList}}></div>
 
                         <div ng-repeat="c in vm.companies track by c.Id">
@@ -54,35 +53,35 @@
             </div>
 
             <!--<div class="row">
-                <div class="col-md-12">
-                    <div class="widget wdarkgray">
-                        <div data-cc-widget-header title={{vm.titles.companyList}} allow-collapse="true"></div>
-                        <div class="widget-content text-info">
+            <div class="col-md-12">
+                <div class="widget wdarkgray">
+                    <div data-cc-widget-header title={{vm.titles.companyList}} allow-collapse="true"></div>
+                    <div class="widget-content text-info">
 
-                            <div>&nbsp;</div>
-                            <table class="table table-condensed table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Address</th>
-                                        <th>City</th>
-                                        <th>Phone</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr data-ng-repeat="c in vm.companies">
-                                        <td>{{c.Id}}</td>
-                                        <td>{{c.CompanyName}}</td>
-                                        <td>{{c.Address1}}</td>
-                                        <td>{{c.City}}</td>
-                                        <td>{{c.CompanyPhone}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <div>&nbsp;</div>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>Phone</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr data-ng-repeat="c in vm.companies">
+                                <td>{{c.Id}}</td>
+                                <td>{{c.CompanyName}}</td>
+                                <td>{{c.Address1}}</td>
+                                <td>{{c.City}}</td>
+                                <td>{{c.CompanyPhone}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>-->
+        </div>
     </section>
 </section>

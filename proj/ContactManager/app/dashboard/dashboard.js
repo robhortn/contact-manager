@@ -9,24 +9,6 @@
 
         var vm = this;
 
-        vm.companyListing = [
-            { id: 1, name: 'Naomi', address: '1600 Amphitheatre' },
-            { id: 2, name: 'Igor', address: '123 Somewhere' },
-            { id: 3, name: 'company 3', address: '123 Somewhere' },
-            { id: 4, name: 'company 4', address: '123 Somewhere' },
-            { id: 5, name: 'company 5', address: '123 Somewhere' },
-            { id: 6, name: 'company 6', address: '123 Somewhere' },
-            { id: 7, name: 'company 7', address: '123 Somewhere' },
-            { id: 8, name: 'company 8', address: '123 Somewhere' },
-            { id: 9, name: 'company 9', address: '123 Somewhere' },
-            { id: 10, name: 'company 10', address: '123 Somewhere' },
-            { id: 11, name: 'company 11', address: '123 Somewhere' },
-            { id: 12, name: 'company 12', address: '123 Somewhere' }
-        ];
-
-        vm.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
-        vm.igor = { name: 'Igor', address: '123 Somewhere' };
-
         vm.filtered = false;
 
         vm.titles = {

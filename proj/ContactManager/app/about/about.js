@@ -8,11 +8,11 @@
         var log = getLogFn(controllerId);
 
         var vm = this;
-        vm.news = {
-            title: 'About',
-            description: 'Versatile management of your companies and contacts.'
+
+        vm.titles = {
+            main: 'About',
+            mainsub: ''
         };
-        vm.title = 'About';
 
         activate();
 
