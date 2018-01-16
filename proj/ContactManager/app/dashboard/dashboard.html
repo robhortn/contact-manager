@@ -12,66 +12,76 @@
                     <div class="widget wblue">
                         <div data-cc-widget-header title="Add Company" allow-collapse="true"></div>
                         <div class="widget-content text-info">
-                            <div>&nbsp;</div>
+
                             <div id="companyForm" class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12 col-lg-6">
                                     <div class="form-group">
-                                        <label class="small col-md-3" for="company">Company</label>
-                                        <div class="col-md-9">
+                                        <label class="small col-md-4" for="company">Company</label>
+                                        <div class="col-md-8">
                                             <input type="text" class="form-control" id="company" ng-model="vm.companyModel.CompanyName">
                                         </div>
                                     </div>
-
+                                    <div class="spacer">&nbsp;</div>
                                     <div class="form-group">
-                                        <label class="small col-md-3" for="address1">Address 1</label>
-                                        <div class="col-md-9">
+                                        <label class="small col-md-4" for="address1">Address 1</label>
+                                        <div class="col-md-8">
                                             <input type="text" class="form-control" id="address1">
                                         </div>
                                     </div>
-
+                                    <div class="spacer">&nbsp;</div>
                                     <div class="form-group">
-                                        <label class="small col-md-3" for="address2">Address 2</label>
-                                        <div class="col-md-9">
+                                        <label class="small col-md-4" for="address2">Address 2</label>
+                                        <div class="col-md-8">
                                             <input type="text" class="form-control" id="address2">
                                         </div>
                                     </div>
-
+                                    <div class="spacer">&nbsp;</div>
                                     <div class="form-group">
-                                        <label class="small col-md-3" for="stateCode">State</label>
-                                        <div class="col-md-9">
+                                        <label class="small col-md-4" for="stateCode">State</label>
+                                        <div class="col-md-8">
                                             <input type="text" class="form-control" id="stateCode">
                                         </div>
                                     </div>
+                                    <div class="spacer">&nbsp;</div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-12 col-lg-6">
                                     <div class="form-group">
-                                        <label class="small col-md-3" for="phone">Phone</label>
-                                        <div class="col-md-9">
+                                        <label class="small col-md-4" for="phone">Phone</label>
+                                        <div class="col-md-8">
                                             <input type="text" class="form-control" id="phone">
                                         </div>
                                     </div>
-
+                                    <div class="spacer">&nbsp;</div>
                                     <div class="form-group">
-                                        <label class="small col-md-3" for="fax">Fax</label>
-                                        <div class="col-md-9">
+                                        <label class="small col-md-4" for="fax">Fax</label>
+                                        <div class="col-md-8">
                                             <input type="text" class="form-control" id="fax">
                                         </div>
                                     </div>
+                                    <div class="spacer">&nbsp;</div>
                                     <div class="form-group">
-                                        <label class="small col-md-3" for="city">City</label>
-                                        <div class="col-md-9">
+                                        <label class="small col-md-4" for="city">City</label>
+                                        <div class="col-md-8">
                                             <input type="text" class="form-control" id="city">
                                         </div>
                                     </div>
+                                    <div class="spacer">&nbsp;</div>
                                     <div class="form-group">
-                                        <label class="small col-md-3 " for="postalcode">Postal Code</label>
-                                        <div class="col-md-9">
+                                        <label class="small col-md-4 " for="postalcode">Postal Code</label>
+                                        <div class="col-md-8">
                                             <input type="text" class="form-control" id="postalcode">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div>&nbsp;</div>
+
+                            <div class="row">
+                                <div class="col-xs-12"><button type="button" class="btn btn-default form-control">Save</button></div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -82,10 +92,8 @@
                         <div data-cc-widget-header title="Search" allow-collapse="false"></div>
                         <div class="widget-content text-info">
                             <div class="row">
-                                
-                                <div>&nbsp;</div>
-                                <div class="col-xs-6"><label class="small">Phone</label>&nbsp; <input type="text" class="form-control" name="message" placeholder="Phone number" valid-number maxlength="10"></div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-12"><label class="small">Phone</label>&nbsp; <input type="text" class="form-control" name="message" placeholder="Phone number" valid-number maxlength="10"></div>
+                                <div class="col-xs-12">
                                     <label class="small">Category</label>&nbsp;
                                     <select id="selCategory" name="selectCategory" class="form-control" data-ng-model="vm.category" data-ng-options="a.name as a.name for a in vm.categories">
                                         <option value="">-- Select --</option>
@@ -94,7 +102,7 @@
                                 <div>&nbsp;</div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-3 col-xs-offset-9"><button type="button" class="btn btn-default form-control">Search</button></div>
+                                <div class="col-xs-12"><button type="button" class="btn btn-default form-control">Search</button></div>
                             </div>
                         </div>
                     </div>

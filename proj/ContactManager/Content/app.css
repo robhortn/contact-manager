@@ -2,6 +2,10 @@
     background-color: #F1F1F1;
 }
 
+.spacer {
+    line-height: 5px;    
+}
+
 .app-page-header {
     height: 48px;
     line-height: 48px;
