@@ -217,8 +217,10 @@
     <Content Include="app\dashboard\dashboard.html" />
     <Content Include="app\dashboard\dashboard.js" />
     <Content Include="app\filters.js" />
+    <Content Include="Content\images\company.svg" />
     <Content Include="app\layout\contact.html" />
     <Content Include="app\layout\pageHeader.html" />
+    <Content Include="Content\images\person2.svg" />
     <Content Include="app\layout\shell.html" />
     <Content Include="app\layout\shell.js" />
     <Content Include="app\layout\sidebar.html" />

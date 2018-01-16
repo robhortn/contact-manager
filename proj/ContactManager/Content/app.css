@@ -30,7 +30,7 @@
     background-color: #fff;
     box-shadow: 0 0 5px #999;
     margin: 10px 10px 30px 0;
-    min-width: 425px;
+    min-width: 225px;
 }
 
 .card:hover {
@@ -45,6 +45,12 @@ input.form-control,
 select.form-control,
 textarea.form-control {
     width: 100%;
+}
+
+.company-logo {
+    width: 170px;
+    height: 170px;
+    padding-right: 30px;
 }
 
 #companyForm .form-group {
