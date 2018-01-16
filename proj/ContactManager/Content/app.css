@@ -41,6 +41,16 @@
     padding: 8px 0 8px 0;
 }
 
+input.form-control,
+select.form-control,
+textarea.form-control {
+    width: 100%;
+}
+
+#companyForm .form-group {
+    height: 25px;
+}
+
 .navbar .navbar-brand {
     background: url(/content/images/icon.png) no-repeat left center !important;
     margin: 0 1em;

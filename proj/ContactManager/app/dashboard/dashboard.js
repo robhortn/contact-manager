@@ -21,6 +21,22 @@
         vm.companyCount = 0;
         vm.companies = [];
 
+        vm.companyModel = {
+            Id: 0,
+            CompanyName: '',
+            Address1: '',
+            Address2: '',
+            City: '',
+            StateCode: '',
+            StatedId: '',
+            PostalCode: '',
+            CategoryId: 0,
+            CategoryName: '',
+            CompanyPhone: '',
+            CompanyFax: '',
+            IsActive: 0
+    };
+
         vm.categories = [
             { id: 1, name: 'Super Amazing Awesome (local)' },
             { id: 2, name: 'Very Cool (local)' },
@@ -60,11 +76,18 @@
             });
         }
 
+        function setCurrentCompany(obj) {
+            if (obj != null) {
+                vm.companyModel.Id = obj.Id;
+                vm.companyModel.CompanyName = obj.CompanyName;
+            }
+        }
+
         function selectCompany(id) {
             
             var result = vm.companies.find(x => x.Id === id);
             if (result !== undefined) {
-                console.log(result);
+                setCurrentCompany(result);
             } else {
                 console.log('selectCompany() in dashboard.js cannot find id: ' + id);
             }
