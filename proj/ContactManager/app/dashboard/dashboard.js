@@ -47,6 +47,7 @@
 
         // Functions
         vm.selectCompany = selectCompany;
+        vm.save = save;
 
         activate();
 
@@ -91,6 +92,10 @@
             } else {
                 console.log('selectCompany() in dashboard.js cannot find id: ' + id);
             }
+        }
+
+        function save() {
+            console.log('save() called');
         }
     }
 })();
