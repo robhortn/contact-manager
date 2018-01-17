@@ -56,10 +56,6 @@ textarea.form-control {
     height: 100px;
 }
 
-#companyForm .form-group {
-    /*height: 25px;*/
-}
-
 .navbar .navbar-brand {
     background: url(/content/images/icon.png) no-repeat left center !important;
     margin: 0 1em;

@@ -24,8 +24,9 @@ namespace ContactManager.Data
 
         #region Companies
 
-        public int AddCompany(Models.Company company)
+        public int SaveCompany(Models.Company company)
         {
+            // Look it up and update it if we find something, otherwise, create a new one.
             Company objCompany = new Company
             {
                 CompanyName = company.CompanyName,

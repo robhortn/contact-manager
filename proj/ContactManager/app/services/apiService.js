@@ -7,7 +7,8 @@
     function apiService($http, common, config) {
 
         var service = {
-            getCompanies: getCompanies
+            getCompanies: getCompanies,
+            saveCompany: saveCompany
         };
 
         return service;
@@ -18,7 +19,18 @@
                         return data.data;
                     },
                     function () {
-                        _queryFailed();
+                        queryFailed();
+                    }
+                );
+        }
+
+        function saveCompany(obj) {
+            return $http.post("api/company/companysave", obj)
+                .then(function (data) {
+                        return data.data;
+                    },
+                    function (data) {
+                        queryFailed(data);
                     }
                 );
         }

@@ -63,14 +63,18 @@ namespace ContactManager.api
 
         [HttpPost]
         [Route("api/company/{company}")]
-        public IHttpActionResult CompanyAdd([FromBody] Company company) {
+        public IHttpActionResult CompanySave([FromBody] Company company) {
 
             if (company == null) return BuildResponse("Company data not provided for saving.", ResponseTypes.BadRequest);
 
             try
             {
                 DataWriter db = new DataWriter(_inTestMode);
-                int result = db.AddCompany(company);
+                int result = db.SaveCompany(company);
+
+                // If save works ok, then save the contacts too.
+
+
                 return Ok(result);
             }
             catch (Exception ex)

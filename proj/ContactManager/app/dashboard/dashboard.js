@@ -14,7 +14,7 @@
         vm.titles = {
             main: 'Dashboard',
             mainsub: '',
-            companyList: 'Company List' + (vm.filtered == true ? ' (Filtered)' : ' (All)')
+            companyList: 'Company List' + (vm.filtered === true ? ' (Filtered)' : ' (All)')
         };
 
         vm.title = 'Dashboard';
@@ -27,10 +27,10 @@
             Address1: '',
             Address2: '',
             City: '',
-            StateCode: '',
-            StatedId: '',
+            StateProvinceName: '',
+            StateId: 25,
             PostalCode: '',
-            CategoryId: 0,
+            CategoryId: null,
             CategoryName: '',
             CompanyPhone: '',
             CompanyFax: '',
@@ -78,7 +78,7 @@
         }
 
         function setCurrentCompany(obj) {
-            if (obj != null) {
+            if (obj !== null) {
                 vm.companyModel.Id = obj.Id;
                 vm.companyModel.CompanyName = obj.CompanyName;
             }
@@ -95,7 +95,9 @@
         }
 
         function save() {
-            console.log('save() called');
+            return apiService.saveCompany(vm.companyModel).then(function () {
+                log('Saved Company successfully.');
+            });
         }
     }
 })();

@@ -16,7 +16,7 @@ namespace ContactManager.Tests.DataLayer
             Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
-            var result = db.AddCompany(param);
+            var result = db.SaveCompany(param);
 
             // Assert
             result.Should().NotBe(null).And.BeGreaterThan(0).And.BeOfType(typeof(int));
