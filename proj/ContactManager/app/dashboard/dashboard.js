@@ -109,6 +109,8 @@
             //console.log('category says: ' + vm.companyModel.CategoryId + ' and stateId says: ' + vm.companyModel.StateId);
             //console.log('filterCategory says: ' + vm.filterCategory);
 
+            //console.log('phone and fax say: ' + vm.companyModel.CompanyPhone + ', ' + vm.companyModel.CompanyFax);
+
             return apiService.saveCompany(vm.companyModel).then(function () {
                 log('Saved Company successfully.');
             });
