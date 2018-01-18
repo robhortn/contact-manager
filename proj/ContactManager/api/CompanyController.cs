@@ -70,8 +70,8 @@ namespace ContactManager.api
             try
             {
                 DataWriter db = new DataWriter(_inTestMode);
-                int result = db.SaveCompany(company);
-                return Ok(result);
+                company.Id = db.SaveCompany(company);
+                return Ok(company);
             }
             catch (Exception ex)
             {

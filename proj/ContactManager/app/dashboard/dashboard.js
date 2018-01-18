@@ -30,21 +30,7 @@
         vm.categories = [];
 
         // Models
-        vm.companyModel = {
-            Id: 0,
-            CompanyName: '',
-            Address1: '',
-            Address2: '',
-            City: '',
-            StateProvinceName: '',
-            StateId: null,
-            PostalCode: '',
-            CategoryId: null,
-            CategoryName: '',
-            CompanyPhone: '',
-            CompanyFax: '',
-            IsActive: 0
-        };
+        vm.companyModel = {};
 
         // Functions
         vm.selectCompany = selectCompany;
@@ -80,19 +66,7 @@
 
         function setCurrentCompany(obj) {
             if (obj !== null) {
-                vm.companyModel.Id = obj.Id;
-                vm.companyModel.CompanyName = obj.CompanyName;
-                vm.companyModel.Address1 = obj.Address1;
-                vm.companyModel.Address2 = obj.Address2;
-                vm.companyModel.City = obj.City;
-                vm.companyModel.StateProvinceName = obj.StateProvinceName;
-                vm.companyModel.StateId = obj.StateId;
-                vm.companyModel.PostalCode = obj.PostalCode;
-                vm.companyModel.CategoryId = obj.CategoryId;
-                vm.companyModel.CategoryName = obj.CategoryName;
-                vm.companyModel.CompanyPhone = obj.CompanyPhone;
-                vm.companyModel.CompanyFax = obj.CompanyFax;
-                vm.companyModel.IsActive = obj.IsActive;
+                vm.companyModel = obj;
             }
         }
 
@@ -111,7 +85,8 @@
 
             //console.log('phone and fax say: ' + vm.companyModel.CompanyPhone + ', ' + vm.companyModel.CompanyFax);
 
-            return apiService.saveCompany(vm.companyModel).then(function () {
+            return apiService.saveCompany(vm.companyModel).then(function (data) {
+                vm.companyModel = data;
                 log('Saved Company successfully.');
             });
         }
