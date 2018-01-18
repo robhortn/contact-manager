@@ -27,7 +27,7 @@ namespace ContactManager.Data
         public int SaveCompany(Models.Company company)
         {
             Company objCompany = null;
-            
+
             // Go get the existing record, if there is one, so we can update it.
             if (company.Id > 0)
             {
@@ -41,19 +41,16 @@ namespace ContactManager.Data
                 _db.Companies.Add(objCompany);
             }
 
-            objCompany = new Company
-            {
-                CompanyName = company.CompanyName,
-                City = company.City,
-                CategoryId = company.CategoryId,
-                Address2 = company.Address2,
-                Address1 = company.Address1,
-                FaxNumber = company.CompanyFax,
-                IsActive = company.IsActive,
-                PhoneNumber = company.CompanyPhone,
-                PostalCode = company.PostalCode,
-                StateId = company.StateId
-            };
+            objCompany.CompanyName = company.CompanyName;
+            objCompany.City = company.City;
+            objCompany.CategoryId = company.CategoryId;
+            objCompany.Address2 = company.Address2;
+            objCompany.Address1 = company.Address1;
+            objCompany.FaxNumber = company.CompanyFax;
+            objCompany.IsActive = company.IsActive;
+            objCompany.PhoneNumber = company.CompanyPhone;
+            objCompany.PostalCode = company.PostalCode;
+            objCompany.StateId = company.StateId;
 
             if (_inTestMode) return 1;  //Exit early if we are unit testing.
 
@@ -145,7 +142,7 @@ namespace ContactManager.Data
             if (result == null) return false;
 
             _db.Contacts.Remove(result);
-            
+
             if (_inTestMode) return true;  //Exit early if we are unit testing.
 
             _db.SaveChanges();

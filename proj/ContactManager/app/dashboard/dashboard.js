@@ -9,18 +9,27 @@
 
         var vm = this;
 
+        // Value tracking 
+        vm.companyCount = 0;
         vm.filtered = false;
 
+        // Messages and titles
         vm.titles = {
             main: 'Dashboard',
             mainsub: '',
             companyList: 'Company List' + (vm.filtered === true ? ' (Filtered)' : ' (All)')
         };
 
-        vm.title = 'Dashboard';
-        vm.companyCount = 0;
+        // Lists
         vm.companies = [];
+        vm.states = [];
+        vm.categories = [
+            { id: 1, name: 'Super Amazing Awesome (local)' },
+            { id: 2, name: 'Very Cool (local)' },
+            { id: 3, name: 'Secret Lair (local)' }
+        ];
 
+        // Models
         vm.companyModel = {
             Id: 0,
             CompanyName: '',
@@ -35,15 +44,7 @@
             CompanyPhone: '',
             CompanyFax: '',
             IsActive: 0
-    };
-
-        vm.categories = [
-            { id: 1, name: 'Super Amazing Awesome (local)' },
-            { id: 2, name: 'Very Cool (local)' },
-            { id: 3, name: 'Secret Lair (local)' }
-        ];
-
-        vm.category = '';
+        };
 
         // Functions
         vm.selectCompany = selectCompany;
@@ -52,28 +53,23 @@
         activate();
 
         function activate() {
-            var promises = [getCompanies(), getMessageCount(), getPeople()];
+            var promises = [getCompanies(), loadLookupStateProvinces()];
             common.activateController(promises, controllerId)
                 .then(function () { log('Activated Dashboard View'); });
         }
 
-        function getMessageCount() {
-            return datacontext.getMessageCount().then(function (data) {
-                return vm.messageCount = data;
-            });
-        }
-
-        function getPeople() {
-            return datacontext.getPeople().then(function (data) {
-                return vm.people = data;
-            });
+        function loadLookupStateProvinces() {
+            return [];
+            //return apiService.getStateProvinces().then(function (data) {
+            //    vm.states = data;
+            //});
         }
 
         function getCompanies() {
             return apiService.getCompanies().then(function (data) {
                 return vm.companies = data;
             }).then(function (data) {
-                vm.companyCount = vm.companies.length;
+                selectCompany(data[0].Id);
             });
         }
 
@@ -81,11 +77,21 @@
             if (obj !== null) {
                 vm.companyModel.Id = obj.Id;
                 vm.companyModel.CompanyName = obj.CompanyName;
+                vm.companyModel.Address1 = obj.Address1;
+                vm.companyModel.Address2 = obj.Address2;
+                vm.companyModel.City = obj.City;
+                vm.companyModel.StateProvinceName = obj.StateProvinceName;
+                vm.companyModel.StateId = obj.StateId;
+                vm.companyModel.PostalCode = obj.PostalCode;
+                vm.companyModel.CategoryId = obj.CategoryId;
+                vm.companyModel.CategoryName = obj.CategoryName;
+                vm.companyModel.CompanyPhone = obj.CompanyPhone;
+                vm.companyModel.CompanyFax = obj.CompanyFax;
+                vm.companyModel.IsActive = obj.IsActive;
             }
         }
 
         function selectCompany(id) {
-            
             var result = vm.companies.find(x => x.Id === id);
             if (result !== undefined) {
                 setCurrentCompany(result);

@@ -71,10 +71,6 @@ namespace ContactManager.api
             {
                 DataWriter db = new DataWriter(_inTestMode);
                 int result = db.SaveCompany(company);
-
-                // If save works ok, then save the contacts too.
-
-
                 return Ok(result);
             }
             catch (Exception ex)
@@ -82,10 +78,6 @@ namespace ContactManager.api
                 return BuildResponse("Error while saving the company.", ResponseTypes.BadRequest, ex);
             }
         }
-
-        // [HttpPut]
-        // [Route("api/company/{company}")]
-        // public IHttpActionResult CompanyUpdate()
 
         [HttpDelete]
         [Route("api/company/{id}")]
