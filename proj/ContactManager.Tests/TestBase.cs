@@ -38,7 +38,7 @@ namespace ContactManager.Tests
             Company result = new Company
             {
                 Id = 23,
-                CompanyName = "Test Company Delete Me",
+                CompanyName = null,
                 City = "Test City",
                 Address1 = "123 Anywhere Street",
                 IsActive = true,

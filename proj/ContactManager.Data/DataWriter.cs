@@ -26,8 +26,22 @@ namespace ContactManager.Data
 
         public int SaveCompany(Models.Company company)
         {
-            // Look it up and update it if we find something, otherwise, create a new one.
-            Company objCompany = new Company
+            Company objCompany = null;
+            
+            // Go get the existing record, if there is one, so we can update it.
+            if (company.Id > 0)
+            {
+                objCompany = _db.Companies.Find(company.Id);
+            }
+
+            // If we found no existing record or we had no Id at all, then we default an add new record.
+            if (objCompany == null)
+            {
+                objCompany = new Company();
+                _db.Companies.Add(objCompany);
+            }
+
+            objCompany = new Company
             {
                 CompanyName = company.CompanyName,
                 City = company.City,
@@ -41,42 +55,10 @@ namespace ContactManager.Data
                 StateId = company.StateId
             };
 
-            _db.Companies.Add(objCompany);
-
             if (_inTestMode) return 1;  //Exit early if we are unit testing.
 
             _db.SaveChanges();
             return objCompany.Id;
-        }
-
-        public int UpdateCompany(Models.Company company)
-        {
-            if (company == null || company.Id == 0) return 0;
-
-            Company result = _db.Companies.Find(company.Id);
-
-            if (result != null)
-            {
-                result.IsActive = company.IsActive;
-                result.PhoneNumber = company.CompanyPhone;
-                result.PostalCode = company.PostalCode;
-                result.StateId = company.StateId;
-                result.FaxNumber = company.CompanyFax;
-                result.Address1 = company.Address1;
-                result.Address2 = company.Address2;
-                result.CategoryId = company.CategoryId;
-                result.City = company.City;
-                result.CompanyName = company.CompanyName;
-            }
-            else
-            {
-                return 0;
-            }
-
-            if (_inTestMode) return company.Id;  //Exit early if we are unit testing.
-
-            _db.SaveChanges();
-            return company.Id;
         }
 
         public bool DeleteCompany(Models.Company company)

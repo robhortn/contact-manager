@@ -9,7 +9,7 @@ namespace ContactManager.Tests.DataLayer
     public class CompanyDataWriterTests : TestBase
     {
         [TestMethod]
-        public void CompanyAddTest()
+        public void CompanySaveTest()
         {
             // Arrange
             Company param = GenerateCompanyData();
@@ -30,7 +30,7 @@ namespace ContactManager.Tests.DataLayer
             Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
-            var result = db.UpdateCompany(param);
+            var result = db.SaveCompany(param);
 
             // Assert
             result.Should().Be(param.Id);
@@ -44,7 +44,7 @@ namespace ContactManager.Tests.DataLayer
             Data.DataWriter db = new Data.DataWriter(runInTestMode);
 
             // Act
-            var result = db.UpdateCompany(param);
+            var result = db.SaveCompany(param);
 
             // Assert
             result.Should().NotBe(param.Id);
