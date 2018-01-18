@@ -40,7 +40,18 @@
                                         <div class="form-group">
                                             <label class="small col-md-4" for="stateCode">State</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" id="stateCode" ng-model="vm.companyModel.StateId">
+                                                <select id="stateCode" name="selectState" class="form-control" data-ng-model="vm.companyModel.StateId" data-ng-options="s.Id as s.StateCode for s in vm.states" required>
+                                                    <option value="">Select State</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="spacer">&nbsp;</div>
+                                        <div class="form-group">
+                                            <label class="small col-md-4" for="companyCategory">Category</label>
+                                            <div class="col-md-8">
+                                                <select id="companyCategory" name="selectCompanyCategory" class="form-control" data-ng-model="vm.companyModel.CategoryId" data-ng-options="a.Id as a.Category for a in vm.categories">
+                                                    <option value="">-- Select --</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="spacer">&nbsp;</div>
@@ -98,7 +109,7 @@
                                 <div class="col-xs-12"><label class="small">Phone</label>&nbsp; <input type="text" class="form-control" name="message" placeholder="Phone number" valid-number maxlength="10"></div>
                                 <div class="col-xs-12">
                                     <label class="small">Category</label>&nbsp;
-                                    <select id="selCategory" name="selectCategory" class="form-control" data-ng-model="vm.category" data-ng-options="a.name as a.name for a in vm.categories">
+                                    <select id="filterCategory" name="selectFilterCategory" class="form-control" data-ng-model="vm.filterCategory" data-ng-options="a.Id as a.Category for a in vm.categories">
                                         <option value="">-- Select --</option>
                                     </select>
                                 </div>

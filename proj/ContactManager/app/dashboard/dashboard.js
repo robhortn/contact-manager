@@ -12,6 +12,10 @@
         // Value tracking 
         vm.companyCount = 0;
         vm.filtered = false;
+        vm.category = '';
+        vm.stateId = '';
+        vm.filterCategory = '';
+        vm.filterPhone = '';
 
         // Messages and titles
         vm.titles = {
@@ -23,11 +27,7 @@
         // Lists
         vm.companies = [];
         vm.states = [];
-        vm.categories = [
-            { id: 1, name: 'Super Amazing Awesome (local)' },
-            { id: 2, name: 'Very Cool (local)' },
-            { id: 3, name: 'Secret Lair (local)' }
-        ];
+        vm.categories = [];
 
         // Models
         vm.companyModel = {
@@ -37,7 +37,7 @@
             Address2: '',
             City: '',
             StateProvinceName: '',
-            StateId: 25,
+            StateId: null,
             PostalCode: '',
             CategoryId: null,
             CategoryName: '',
@@ -53,16 +53,21 @@
         activate();
 
         function activate() {
-            var promises = [getCompanies(), loadLookupStateProvinces()];
+            var promises = [loadLookupStateProvinces(), loadLookupCategories(), getCompanies()];
             common.activateController(promises, controllerId)
                 .then(function () { log('Activated Dashboard View'); });
         }
 
+        function loadLookupCategories() {
+            return lookupService.getCategories().then(function (data) {
+                vm.categories = data;
+            });
+        }
+
         function loadLookupStateProvinces() {
-            return [];
-            //return apiService.getStateProvinces().then(function (data) {
-            //    vm.states = data;
-            //});
+            return lookupService.getStateProvinces().then(function (data) {
+                vm.states = data;
+            });
         }
 
         function getCompanies() {
@@ -101,6 +106,9 @@
         }
 
         function save() {
+            //console.log('category says: ' + vm.companyModel.CategoryId + ' and stateId says: ' + vm.companyModel.StateId);
+            //console.log('filterCategory says: ' + vm.filterCategory);
+
             return apiService.saveCompany(vm.companyModel).then(function () {
                 log('Saved Company successfully.');
             });
