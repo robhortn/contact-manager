@@ -12,10 +12,9 @@
         // Value tracking 
         vm.companyCount = 0;
         vm.filtered = false;
+        vm.filterValue = 'Blue';
         vm.category = '';
         vm.stateId = '';
-        vm.filterCategory = '';
-        vm.filterPhone = '';
 
         // Messages and titles
         vm.titles = {
