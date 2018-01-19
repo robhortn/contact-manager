@@ -29,6 +29,16 @@
                         content: '<i class="fa fa-dashboard"></i> Dashboard'
                     }
                 }
+            }, {
+                url: '/contacts',
+                config: {
+                    templateUrl: 'app/contacts/contacts.html',
+                    title: 'contacts',
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-list"></i> Contacts'
+                    }
+                }
             },
             //{
             //    url: '/admin',

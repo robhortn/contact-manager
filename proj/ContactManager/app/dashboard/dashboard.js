@@ -45,9 +45,7 @@
             FirstName: 'firstname',
             LastName: 'lastname'
         };
-
-        scope.contact = vm.contact;
-
+        
         activate();
 
         function activate() {
@@ -109,7 +107,7 @@
                 templateUrl: 'deleteConfirmation.html',
                 backdrop: true,
                 windowClass: 'modal',
-                controller: function ($scope, $modalInstance) {
+                controller: function ($modalInstance) {
                     scope.submit = function () {
                         $modalInstance.dismiss('cancel');
                     }

@@ -51,7 +51,7 @@ textarea.form-control {
     width: 100%;
 }
 
-.company-logo {
+.company-logo, .contact-image {
     width: 100px;
     height: 100px;
 }

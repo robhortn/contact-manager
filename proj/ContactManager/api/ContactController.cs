@@ -10,8 +10,6 @@ namespace ContactManager.api
         public IHttpActionResult GetContacts()
         {
             var results = _repoContacts.GetContacts.OrderBy(x => x.NameLast).ToList();
-            if (results == null) return BuildResponse("No contacts found.", ResponseTypes.NotFound);
-
             return Ok(results);
         }
 

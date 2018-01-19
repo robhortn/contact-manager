@@ -1,13 +1,12 @@
-﻿<div class="col-md-3">
-    <div class="card">
-        <div class="card-content">
-            <p>{{c.Id}}</p>
-            <p>{{c.NameFirst}}</p>
-            <p>{{c.NameLast}}</p>
-            <p>{{c.PhoneDirectLine}}</p>
-            <p>{{c.PhoneExtension}}</p>
-            <p>{{c.PhoneHome}}</p>
-            <p>{{c.EmailAddress}}</p>
+﻿<div class="card col-xs-3">
+    <div class="card-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12">
+            <img class="contact-image" src="../../Content/images/person2.svg" />
+        </div>
+        <div class="col-xs-12">
+            <p>{{c.NameFirst}} {{c.NameLast}} <i class="fa fa-envelope"></i> {{c.EmailAddress}}</p>
+            <p><i class="fa fa-building"></i> {{c.PhoneDirectLine | tel}} ext: {{c.PhoneExtension}}</p>
+            <p><i class="fa fa-home"></i> {{c.PhoneHome | tel}}</p>
         </div>
     </div>
 </div>

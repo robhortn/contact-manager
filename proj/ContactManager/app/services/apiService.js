@@ -8,6 +8,7 @@
 
         var service = {
             getCompanies: getCompanies,
+            getContacts: getContacts,
             saveCompany: saveCompany
         };
 
@@ -15,6 +16,17 @@
 
         function getCompanies() {
             return $http.get("api/companies")
+                .then(function (data) {
+                        return data.data;
+                    },
+                    function () {
+                        queryFailed();
+                    }
+                );
+        }
+
+        function getContacts() {
+            return $http.get("api/contacts")
                 .then(function (data) {
                         return data.data;
                     },

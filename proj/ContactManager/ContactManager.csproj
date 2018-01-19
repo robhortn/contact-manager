@@ -214,6 +214,8 @@
     <Content Include="app\config.exceptionHandler.js" />
     <Content Include="app\config.js" />
     <Content Include="app\config.route.js" />
+    <Content Include="app\contacts\contacts.html" />
+    <Content Include="app\contacts\contacts.js" />
     <Content Include="app\dashboard\dashboard.html" />
     <Content Include="app\dashboard\dashboard.js" />
     <Content Include="app\filters.js" />
