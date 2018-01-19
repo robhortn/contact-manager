@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'dashboard';
-    angular.module('app').controller(controllerId, ['common', 'datacontext', 'apiService', 'lookupService', dashboard]);
+    angular.module('app').controller(controllerId, ['common', 'datacontext', 'apiService', 'lookupService', '$modal', dashboard]);
 
-    function dashboard(common, datacontext, apiService, lookupService) {
+    function dashboard(common, datacontext, apiService, lookupService, modal) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
@@ -39,6 +39,14 @@
         // Functions
         vm.selectCompany = selectCompany;
         vm.save = save;
+        vm.open = open;
+
+        vm.contact = {
+            FirstName: 'firstname',
+            LastName: 'lastname'
+        };
+
+        scope.contact = vm.contact;
 
         activate();
 
@@ -94,5 +102,23 @@
                 log('Saved Company successfully.');
             });
         }
+
+        // Modals
+        function open() {
+            modal.open({
+                templateUrl: 'deleteConfirmation.html',
+                backdrop: true,
+                windowClass: 'modal',
+                controller: function ($scope, $modalInstance) {
+                    scope.submit = function () {
+                        $modalInstance.dismiss('cancel');
+                    }
+                    scope.cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        };
+
     }
 })();

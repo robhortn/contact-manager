@@ -89,12 +89,10 @@
                                 <div>&nbsp;</div>
 
                                 <div class="row">
-                                    <div class="col-xs-12"><button type="submit" class="btn btn-default form-control">Save</button></div>
+                                    <div class="col-xs-6"><button type="button" class="btn btn-danger form-control" ng-click="vm.open()">Delete</button></div>
+                                    <div class="col-xs-6"><button type="submit" class="btn btn-success form-control">Save</button></div>
                                 </div>
                             </form>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -133,4 +131,25 @@
             </div>
         </div>
     </section>
+
+    <script type="text/ng-template" id="deleteConfirmation.html">
+        <div class="modal-header">
+            <h3>Confirmation</h3>
+        </div>
+        <form ng-submit="submit()">
+            <div class="modal-body">
+                <p>Are you sure you want to delete this company and all related contacts?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-default form-control" ng-click="cancel()">Cancel</button>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-danger form-control" value="Yes I Want to Delete" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </script>
 </section>
