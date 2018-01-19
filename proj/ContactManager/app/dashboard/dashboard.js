@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'dashboard';
-    angular.module('app').controller(controllerId, ['common', 'datacontext', 'apiService', 'lookupService', '$modal', dashboard]);
+    angular.module('app').controller(controllerId, ['common', 'datacontext', 'apiService', 'lookupService', '$modal', '$scope', dashboard]);
 
-    function dashboard(common, datacontext, apiService, lookupService, modal) {
+    function dashboard(common, datacontext, apiService, lookupService, modal, scope) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
