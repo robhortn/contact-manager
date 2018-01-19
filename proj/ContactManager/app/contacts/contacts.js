@@ -49,6 +49,7 @@
         function selectContact(id) {
             var result = vm.contacts.find(x => x.Id === id);
             if (result !== undefined) {
+                console.log('selectContact() in contacts.js found contact id: ' + id);
                 setCurrentContact(result);
             } else {
                 console.log('selectContact() in contacts.js cannot find id: ' + id);
